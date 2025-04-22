@@ -1,0 +1,10 @@
+.header {
+  margin-top: 80px;
+  padding-bottom: 60px;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

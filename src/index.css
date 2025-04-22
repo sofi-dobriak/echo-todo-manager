@@ -1,2 +1,12 @@
 @import url(./reset.css);
 @import url(./modern-normalize.css);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #2D3F50;
+}
