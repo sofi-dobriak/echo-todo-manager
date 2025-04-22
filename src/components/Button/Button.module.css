@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #3a7190;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: #f3faff;
+    border-color: #3a7190;
+
+    svg,
+    span {
+      color: #2d3f50;
+    }
+  }
+}

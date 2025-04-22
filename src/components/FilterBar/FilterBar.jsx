@@ -1,20 +1,52 @@
 import { useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
 import styles from './FilterBar.module.css';
+import Button from '../Button/Button';
+import StatusFilter from '../StatusFilter/StatusFilter';
+import DataFilter from '../DataFilter/DataFilter';
+import TitleFilter from '../TitleFilter/TitleFilter';
 
 const FilterBar = () => {
     const [selectedFilter, setSelectedFilter] = useState('');
+    const [isStatus, setIsStatus] = useState(false);
+    const [isData, setIsData] = useState(false);
+    const [isTitle, setIsTitle] = useState(false);
 
     const handleFilterChange = e => {
-        setSelectedFilter(e.target.value);
+        const value = e.target.value;
+        setSelectedFilter(value);
+
+        if (value === 'status') {
+            setIsStatus(true);
+            setIsData(false);
+            setIsTitle(false);
+            return;
+        }
+
+        if (value === 'data') {
+            setIsStatus(false);
+            setIsData(true);
+            setIsTitle(false);
+            return;
+        }
+
+        if (value === 'title') {
+            setIsStatus(false);
+            setIsData(false);
+            setIsTitle(true);
+            return;
+        }
     };
 
     const handleCancelChoise = () => {
         setSelectedFilter('');
+        setIsStatus(false);
+        setIsData(false);
+        setIsTitle(false);
     };
 
     return (
-        <div>
+        <div className={styles.filterContainer}>
             <h2 className={styles.filterTitle}>Фільтр</h2>
             <div className={styles.formButtonContainer}>
                 <form className={styles.radioInputs}>
@@ -50,9 +82,15 @@ const FilterBar = () => {
                         <span className={styles.name}>за назвою</span>
                     </label>
                 </form>
-                <button onClick={handleCancelChoise} className={styles.cancelButton}>
+                <Button onClick={handleCancelChoise} className={styles.cancelButton}>
                     <IoCloseSharp className={styles.cancelIcon} />
-                </button>
+                </Button>
+            </div>
+
+            <div className={styles.filtersOptionsContainer}>
+                {isStatus && <StatusFilter />}
+                {isData && <DataFilter />}
+                {isTitle && <TitleFilter />}
             </div>
         </div>
     );
