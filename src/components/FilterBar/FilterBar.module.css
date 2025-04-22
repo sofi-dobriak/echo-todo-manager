@@ -1,0 +1,87 @@
+.filterTitle {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.formButtonContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radioInputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  width: 324px;
+  font-size: inherit;
+}
+
+.radio {
+  flex: 1 1 auto;
+  text-align: center;
+  border-right: 1px solid var(--border-color);
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.radio input {
+  display: none;
+}
+
+.name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  padding: .5rem 0;
+  color: rgba(51, 65, 85, 1);
+  transition: all .15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #3a7190;
+    background-color: #f0f4f9;
+  }
+}
+
+.radioInputs .radio input:checked+.name {
+  background-color: #fff;
+  border: 1px solid #3a7190;
+  background-color: #f0f4f9;
+}
+
+.cancelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 2px;
+  background-color: #3a7190;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: #f3faff;
+    border-color: #3a7190;
+
+    .cancelIcon {
+      color: #2d3f50;
+    }
+  }
+}
+
+.cancelIcon {
+  color: #fff;
+  font-size: 20px;
+}
