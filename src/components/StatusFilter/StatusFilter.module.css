@@ -40,6 +40,7 @@
   border: none;
   padding: .5rem 0;
   color: rgba(51, 65, 85, 1);
+  transition: all .15s ease-in-out;
 
   &:hover,
   &:focus {

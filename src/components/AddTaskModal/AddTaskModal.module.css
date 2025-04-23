@@ -113,3 +113,9 @@
 .checkInput {
   display: none;
 }
+
+.error {
+  color: #df5a6e;
+  font-size: 12px;
+  position: absolute;
+}

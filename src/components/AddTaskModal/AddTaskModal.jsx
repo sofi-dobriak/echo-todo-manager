@@ -4,9 +4,42 @@ import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import { FaCheck } from 'react-icons/fa6';
 import { IoCloseSharp } from 'react-icons/io5';
+import * as Yup from 'yup';
+import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
+
+const schema = Yup.object().shape({
+    title: Yup.string()
+        .required('Назва обовʼязкова')
+        .min(2, 'Максимум 2 символи')
+        .max(30, 'Максимум 30 символів')
+        .required('Заповність, будь ласка, поле'),
+});
+
+const initialValue = {
+    title: '',
+    timer: '',
+};
+
+const TitleLength = () => {
+    const { values } = useFormikContext();
+    return <p className={styles.symbolCount}>{values.title.length}/30</p>;
+};
 
 const AddTaskModal = ({ isVisible, onClose }) => {
     const [isTimerActive, setIsTimerActive] = useState(false);
+
+    const handleSubmit = (values, action) => {
+        const dataToSubmit = {
+            title: values.title.trim(),
+            timer: isTimerActive ? Number(values.timer) : null,
+        };
+
+        console.log('✅ SUBMIT:', dataToSubmit);
+
+        action.resetForm();
+        setIsTimerActive(false);
+        onClose();
+    };
 
     return (
         <Modal isVisible={isVisible} onClose={onClose}>
@@ -14,32 +47,49 @@ const AddTaskModal = ({ isVisible, onClose }) => {
                 <IoCloseSharp className={styles.cancelIcon} />
             </button>
 
-            <input className={styles.taskInput} type='text' placeholder='Назва задачі' />
-            <p className={styles.symbolCount}>0/50</p>
+            <Formik initialValues={initialValue} validationSchema={schema} onSubmit={handleSubmit}>
+                <Form>
+                    <Field
+                        className={styles.taskInput}
+                        type='title'
+                        name='title'
+                        placeholder='Назва задачі'
+                    />
+                    <ErrorMessage name='title' className={styles.error} component='div' />
+                    <TitleLength />
 
-            <div className={styles.checkBoxTimeContainer}>
-                <div className={styles.checkBoxInputContainer}>
-                    <label className={styles.checkLabel}>
-                        <input
-                            type='checkbox'
-                            id='timer'
-                            className={styles.checkInput}
-                            checked={isTimerActive}
-                            onChange={e => setIsTimerActive(!isTimerActive)}
-                        />
-                        <span className={styles.fakeCheckbox}>
-                            <FaCheck className={styles.checkIcon} />
-                        </span>
-                        Увімкнути таймер
-                    </label>
-                </div>
+                    <div className={styles.checkBoxTimeContainer}>
+                        <div className={styles.checkBoxInputContainer}>
+                            <label className={styles.checkLabel}>
+                                <input
+                                    type='checkbox'
+                                    id='timer'
+                                    className={styles.checkInput}
+                                    checked={isTimerActive}
+                                    onChange={() => setIsTimerActive(!isTimerActive)}
+                                />
+                                <span className={styles.fakeCheckbox}>
+                                    <FaCheck className={styles.checkIcon} />
+                                </span>
+                                Увімкнути таймер
+                            </label>
+                        </div>
 
-                {isTimerActive && (
-                    <input className={styles.timeInput} type='text' placeholder='60' />
-                )}
-            </div>
+                        {isTimerActive && (
+                            <Field
+                                className={styles.timeInput}
+                                type='text'
+                                name='timer'
+                                placeholder='60'
+                            />
+                        )}
+                    </div>
 
-            <Button className={styles.createButton}>Створити</Button>
+                    <Button className={styles.createButton} type='submit'>
+                        Створити
+                    </Button>
+                </Form>
+            </Formik>
         </Modal>
     );
 };
