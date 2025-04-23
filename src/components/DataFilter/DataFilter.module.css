@@ -6,7 +6,7 @@
 
 .dateForm {
   display: flex;
-  background-color: #fff;
+  background-color: var(--form-bg-color);
   max-width: 312px;
   width: 100%;
   gap: 8px;
@@ -22,6 +22,6 @@
 }
 
 .acceptIcon {
-  color: #fff;
+  color: var(--icon-color);
   font-size: 20px;
 }

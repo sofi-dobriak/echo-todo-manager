@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(2px);
-  background: rgba(255, 249, 249, 0.5);
+  background-color: var(--modal-wrapper-bg);
 
   opacity: 0;
   pointer-events: none;
@@ -27,6 +27,6 @@
   border-radius: 4px;
   width: 520px;
   height: 342px;
-  background-color: #c5d8e3;
+  background-color: var(--modal-window-bg);
   padding: 80px 40px 40px;
 }

@@ -12,13 +12,13 @@
   &:hover,
   &:focus {
     .cancelIcon {
-      color: #fff;
+      color: var(--hover-cancel-icon-color);
     }
   }
 }
 
 .cancelIcon {
-  color: #2d3f50;
+  color: var(--cancel-icon-color);
   font-size: 24px;
   transition: all 0.15s ease-in-out;
 }
@@ -28,7 +28,7 @@
   border-radius: 4px;
   width: 100%;
   max-width: 440px;
-  background-color: #fff;
+  background-color: var(--input-bg-color);
   padding: 12px;
   margin-bottom: 6px;
   transition: all 0.15s ease-in-out;
@@ -36,7 +36,7 @@
   &:hover,
   &:focus {
     outline: none;
-    border-color: #3a7190;
+    border-color: var(--hover-border-color);
   }
 }
 
@@ -61,7 +61,7 @@
   border-radius: 4px;
   width: 24px;
   height: 24px;
-  background-color: #fff;
+  background-color: var(--input-bg-color);
   cursor: pointer;
 }
 
@@ -74,12 +74,12 @@
 }
 
 .checkIcon {
-  color: #fff;
+  color: var(--input-bg-color);
   font-size: 20px;
 }
 
 .checkInput:checked+.fakeCheckbox .checkIcon {
-  color: #2d3f50;
+  color: var(--text-color);
 }
 
 .timeInput {
@@ -98,7 +98,7 @@
   &:hover,
   &:focus {
     outline: none;
-    border-color: #3a7190;
+    border-color: var(--hover-border-color);
   }
 }
 
@@ -115,7 +115,7 @@
 }
 
 .error {
-  color: #df5a6e;
+  color: var(--error-color);
   font-size: 12px;
   position: absolute;
 }

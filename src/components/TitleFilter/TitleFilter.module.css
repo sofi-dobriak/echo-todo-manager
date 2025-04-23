@@ -5,7 +5,7 @@
 }
 
 .textInput {
-  border: 1px solid #a3adb5;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   width: 100%;
   max-width: 230px;
@@ -15,7 +15,7 @@
   &:hover,
   &:focus {
     outline: none;
-    border-color: #3a7190;
+    border-color: var(--hover-border-color);
   }
 }
 
@@ -24,6 +24,6 @@
 }
 
 .acceptIcon {
-  color: #fff;
+  color: var(--icon-color);
   font-size: 20px;
 }

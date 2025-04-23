@@ -16,7 +16,7 @@
   &:hover,
   &:focus {
     outline: none;
-    border-color: #2D3F50;
+    border-color: var(--hover-border-color);
   }
 }
 
@@ -28,7 +28,7 @@
   z-index: 10;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--calendar-bg-color);
 }
 
 .customDayPicker {
