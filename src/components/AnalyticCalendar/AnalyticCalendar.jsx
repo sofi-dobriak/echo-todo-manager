@@ -1,9 +1,9 @@
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/style.css';
 import { useState, useRef, useEffect } from 'react';
-import styles from './Calendar.module.css';
+import styles from './AnalyticCalendar.module.css';
 
-const Calendar = ({ className, label }) => {
+const AnalyticCalendar = ({ className, label }) => {
     const [selected, setSelected] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef(null);
@@ -55,4 +55,4 @@ const Calendar = ({ className, label }) => {
     );
 };
 
-export default Calendar;
+export default AnalyticCalendar;

@@ -1,0 +1,64 @@
+.tableContainer {
+  border: 1px solid #3a7190;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 120px;
+  position: relative;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  table-layout: fixed;
+  background-color: #f0f4f9;
+}
+
+.th {
+  border-bottom: 1px solid #3a7190;
+  border-right: 1px solid #3a7190;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  background-color: #eef4f8;
+  color: var(--text-color);
+}
+
+.taskText {
+  padding: 4px;
+  text-align: center;
+  border-right: 1px solid #3a7190;
+  background-color: #fff;
+  height: 50px;
+  position: relative;
+}
+
+.taskText:last-child {
+  border-right: none;
+}
+
+.taskItem .second {
+  border-right: 1px solid #3a7190;
+}
+
+
+.table tr:last-child .taskText {
+  border-bottom: none;
+}
+
+.table,
+.table th:last-child {
+  border-right: none;
+}
+
+.analyticCalendarRow,
+.analyticCalendarRow {
+  font-family: inherit;
+  padding: 10px;
+  position: absolute;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  left: 8px;
+  bottom: 4px;
+}

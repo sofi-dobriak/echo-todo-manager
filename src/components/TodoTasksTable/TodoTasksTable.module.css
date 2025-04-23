@@ -1,0 +1,54 @@
+.tableContainer {
+  border: 1px solid #3a7190;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 120px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  table-layout: fixed;
+  background-color: #f0f4f9;
+}
+
+.th,
+.taskText {
+  border-bottom: 1px solid #3a7190;
+  border-right: 1px solid #3a7190;
+  padding: 12px;
+  text-align: center;
+}
+
+.th {
+  font-weight: 600;
+  background-color: #eef4f8;
+  color: var(--text-color);
+}
+
+.taskText {
+  background-color: #fff;
+}
+
+.table tr:last-child .taskText {
+  border-bottom: none;
+}
+
+.table .taskText:last-child,
+.table th:last-child {
+  border-right: none;
+}
+
+.tableContainer .table .taskItem {
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    td {
+      background-color: #f3faff;
+    }
+  }
+}
