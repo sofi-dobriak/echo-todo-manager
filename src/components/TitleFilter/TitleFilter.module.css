@@ -1,0 +1,27 @@
+.formButtonContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.textInput {
+  border: 1px solid #a3adb5;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 230px;
+  padding: 8px;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+.acceptButton {
+  padding: 2px;
+}
+
+.acceptIcon {
+  color: #fff;
+  font-size: 20px;
+}

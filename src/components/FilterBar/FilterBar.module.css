@@ -2,10 +2,11 @@
   position: relative;
 }
 
-.filtersOptionsContainer {
+.dynamicFilter {
+  min-height: 120px;
   position: absolute;
-  bottom: -90px;
-  right: -px;
+  bottom: -140px;
+  left: 0;
 }
 
 .filterTitle {
@@ -56,6 +57,11 @@
   border: none;
   padding: .5rem 0;
   color: rgba(51, 65, 85, 1);
+
+  &:hover,
+  &:focus {
+    background-color: #f0f4f9;
+  }
 
 }
 

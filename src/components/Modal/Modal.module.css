@@ -1,0 +1,32 @@
+.modalWrapper {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  background: rgba(255, 249, 249, 0.5);
+
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: all 0.15s ease-in-out;
+}
+
+.modalVisible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.modalWindow {
+  position: relative;
+  border-radius: 4px;
+  width: 520px;
+  height: 342px;
+  background-color: #c5d8e3;
+  padding: 80px 40px 40px;
+}

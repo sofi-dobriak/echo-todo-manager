@@ -1,0 +1,39 @@
+.formButtonContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateForm {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  max-width: 312px;
+  width: 100%;
+  gap: 8px;
+  font-size: inherit;
+}
+
+.dateInput {
+  min-width: 120px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    border-color: #3a7190;
+  }
+}
+
+.acceptButton {
+  padding: 2px;
+}
+
+.acceptIcon {
+  color: #fff;
+  font-size: 20px;
+}

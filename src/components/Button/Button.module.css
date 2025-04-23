@@ -7,11 +7,13 @@
   border: 1px solid transparent;
   cursor: pointer;
   transition: all .15s ease-in-out;
+  color: #FFFFFF;
 
   &:hover,
   &:focus {
     background-color: #f3faff;
     border-color: #3a7190;
+    color: #2D3F50;
 
     svg,
     span {

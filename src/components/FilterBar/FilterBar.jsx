@@ -47,7 +47,6 @@ const FilterBar = () => {
 
     return (
         <div className={styles.filterContainer}>
-            <h2 className={styles.filterTitle}>Фільтр</h2>
             <div className={styles.formButtonContainer}>
                 <form className={styles.radioInputs}>
                     <label className={styles.radio}>
@@ -87,7 +86,7 @@ const FilterBar = () => {
                 </Button>
             </div>
 
-            <div className={styles.filtersOptionsContainer}>
+            <div className={styles.dynamicFilter}>
                 {isStatus && <StatusFilter />}
                 {isData && <DataFilter />}
                 {isTitle && <TitleFilter />}

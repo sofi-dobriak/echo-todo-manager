@@ -8,3 +8,36 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.optionContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.taskButton,
+.deleteButton {
+  min-width: 146px;
+  padding: 14px;
+}
+
+.analitycsLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #3a7190;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  color: #FFFFFF;
+  min-width: 146px;
+  padding: 14px;
+
+  &:hover,
+  &:focus {
+    background-color: #f3faff;
+    border-color: #3a7190;
+    color: #2D3F50;
+  }
+}

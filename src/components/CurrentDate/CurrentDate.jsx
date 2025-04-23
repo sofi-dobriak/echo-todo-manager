@@ -18,21 +18,30 @@ const CurrentDate = () => {
         return () => clearTimeout(timeOut);
     }, [currentDate]);
 
+    const weekDaysNom = [
+        'Неділя',
+        'Понеділок',
+        'Вівторок',
+        'Середа',
+        'Четвер',
+        "П'ятниця",
+        'Субота',
+    ];
+
+    const dayOfWeek = currentDate.getDay();
+
     const options = {
-        weekday: 'long',
         year: 'numeric',
         day: 'numeric',
         month: 'numeric',
     };
 
-    const dataFormatted = currentDate.toLocaleDateString('uk-UA', options);
-    const [weekDay, date] = dataFormatted.split(', ');
-    const formattedWeekDay = weekDay[0].toUpperCase() + weekDay.slice(1).toLowerCase();
+    const dateFormatted = currentDate.toLocaleDateString('uk-UA', options);
 
     return (
         <div className={styles.currentDataContainer}>
-            <p className={styles.date}>{date}</p>
-            <p className={styles.weekDay}>{formattedWeekDay}</p>
+            <p className={styles.date}>{dateFormatted}</p>
+            <p className={styles.weekDay}>{weekDaysNom[dayOfWeek]}</p>
         </div>
     );
 };

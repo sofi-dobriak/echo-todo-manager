@@ -5,7 +5,6 @@
 }
 
 .radioInputs {
-  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, auto);
@@ -41,6 +40,11 @@
   border: none;
   padding: .5rem 0;
   color: rgba(51, 65, 85, 1);
+
+  &:hover,
+  &:focus {
+    background-color: #f0f4f9;
+  }
 
 }
 

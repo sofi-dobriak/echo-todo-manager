@@ -1,0 +1,115 @@
+.cancelButton {
+  padding: 2px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    .cancelIcon {
+      color: #fff;
+    }
+  }
+}
+
+.cancelIcon {
+  color: #2d3f50;
+  font-size: 24px;
+  transition: all 0.15s ease-in-out;
+}
+
+.taskInput {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 440px;
+  background-color: #fff;
+  padding: 12px;
+  margin-bottom: 6px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: #3a7190;
+  }
+}
+
+.symbolCount {
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.checkBoxTimeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  min-height: 40px;
+}
+
+.fakeCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.checkLabel {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+}
+
+.checkIcon {
+  color: #fff;
+  font-size: 20px;
+}
+
+.checkInput:checked+.fakeCheckbox .checkIcon {
+  color: #2d3f50;
+}
+
+.timeInput {
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 100px;
+  padding: 6px;
+  text-align: center;
+
+  &::placeholder {
+    text-align: center;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: #3a7190;
+  }
+}
+
+.createButton {
+  display: block;
+  margin: 0 auto;
+  min-width: 210px;
+  height: 46px;
+  padding: 12px;
+}
+
+.checkInput {
+  display: none;
+}
