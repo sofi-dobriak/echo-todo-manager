@@ -5,7 +5,7 @@
 .dynamicFilter {
   min-height: 120px;
   position: absolute;
-  bottom: -140px;
+  bottom: -130px;
   left: 0;
 }
 
@@ -24,7 +24,6 @@
 .radioInputs {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   gap: 4px;
   background-color: var(--input-bg-color);
   width: 324px;
