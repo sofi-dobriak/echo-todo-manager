@@ -1,6 +1,12 @@
 import styles from './TodoTasksTable.module.css';
 
-const TodoTasksTable = () => {
+const TodoTasksTable = ({ tasks }) => {
+    const formattedDateTime = isoDate => {
+        if (!isoDate) return '';
+        const date = new Date(isoDate);
+        return `${date.toLocaleDateString('uk-UA')} ${date.getHours()}:${date.getMinutes()}`;
+    };
+
     return (
         <main className={styles.tableContainer}>
             <table className={styles.table}>
@@ -15,14 +21,18 @@ const TodoTasksTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className={styles.taskItem}>
-                        <td className={styles.taskText}>28.03.25 10:08</td>
-                        <td className={styles.taskText}>28.03.25 10:50</td>
-                        <td className={styles.taskText}>28.03.25 11:30</td>
-                        <td className={styles.taskText}></td>
-                        <td className={styles.taskText}>Розробка звіту</td>
-                        <td className={styles.taskText}>Зупинена</td>
-                    </tr>
+                    {tasks.map(({ id, title, status, startDate, createdAt }) => (
+                        <tr className={styles.taskItem} key={id}>
+                            <td className={styles.taskText}>{formattedDateTime(createdAt)}</td>
+                            <td className={styles.taskText}>
+                                {status === 'В роботі' ? formattedDateTime(startDate) : ''}
+                            </td>
+                            <td className={styles.taskText}></td>
+                            <td className={styles.taskText}></td>
+                            <td className={styles.taskText}>{title}</td>
+                            <td className={styles.taskText}>{status}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </main>

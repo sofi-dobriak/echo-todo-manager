@@ -3,7 +3,7 @@ import styles from './Header.module.css';
 import CurrentDate from '../CurrentDate/CurrentDate';
 import Button from '../Button/Button';
 
-const Header = ({ toggleModal }) => {
+const Header = ({ toggleModal, deleteAllTasks }) => {
     return (
         <header className={styles.header}>
             <div className={styles.headerContainer}>
@@ -14,7 +14,9 @@ const Header = ({ toggleModal }) => {
                     <Button onClick={toggleModal} className={styles.taskButton}>
                         Нова задача
                     </Button>
-                    <Button className={styles.deleteButton}>Видалити все</Button>
+                    <Button onClick={deleteAllTasks} className={styles.deleteButton}>
+                        Видалити все
+                    </Button>
                     <a href='#footer' className={styles.analitycsLink}>
                         Аналітика
                     </a>

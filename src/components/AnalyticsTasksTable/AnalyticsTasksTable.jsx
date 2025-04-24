@@ -3,7 +3,7 @@ import styles from './AnalyticsTasksTable.module.css';
 
 const AnalyticsTasksTable = () => {
     return (
-        <footer className={styles.tableContainer}>
+        <footer className={styles.tableContainer} id='footer'>
             <table className={styles.table}>
                 <thead className={styles.thead}>
                     <tr className={styles.tr}>

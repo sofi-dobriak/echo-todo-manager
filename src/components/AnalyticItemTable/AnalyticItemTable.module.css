@@ -1,0 +1,39 @@
+.tableContainer {
+  border: 1px solid #3a7190;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 120px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  table-layout: fixed;
+}
+
+.th {
+  border-bottom: 1px solid #3a7190;
+  border-right: 1px solid #3a7190;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  background-color: #eef4f8;
+  color: var(--text-color);
+}
+
+.taskText {
+  padding: 12px;
+  text-align: center;
+  border-right: 1px solid #3a7190;
+  background-color: #fff;
+}
+
+.taskText:last-child {
+  border-right: none;
+}
+
+.table,
+.table th:last-child {
+  border-right: none;
+}
