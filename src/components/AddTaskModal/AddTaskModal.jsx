@@ -27,15 +27,6 @@ const TitleLength = () => {
 
 const AddTaskModal = ({ isVisible, onClose, addTask }) => {
     const [isTimerActive, setIsTimerActive] = useState(false);
-    const inputRef = useRef(null);
-
-    useEffect(() => {
-        if (isVisible && inputRef.current) {
-            setTimeout(() => {
-                inputRef.current.focus();
-            }, 0);
-        }
-    }, [isVisible]);
 
     const handleSubmit = (values, action) => {
         const now = new Date().toISOString();
@@ -67,7 +58,6 @@ const AddTaskModal = ({ isVisible, onClose, addTask }) => {
                         type='text'
                         name='title'
                         placeholder='Назва задачі'
-                        innerRef={inputRef}
                     />
                     <ErrorMessage name='title' className={styles.error} component='div' />
                     <TitleLength />

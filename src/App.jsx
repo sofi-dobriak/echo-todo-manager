@@ -22,26 +22,25 @@ function App() {
 
     const getFilteredTasks = (tasks, filter) => {
         return tasks.filter(task => {
-            // Фільтрація за статусом
             if (filter.status && task.status.toLowerCase() !== filter.status.toLowerCase()) {
                 return false;
             }
-            // Фільтрація за датою
+
             if (filter.dateRange.start && filter.dateRange.end) {
                 const taskDate = new Date(task.createdDate);
                 const startDate = new Date(filter.dateRange.start);
                 const endDate = new Date(filter.dateRange.end);
+
                 if (taskDate < startDate || taskDate > endDate) {
                     return false;
                 }
             }
 
-            // Фільтрація за назвою
             if (filter.title && !task.title.toLowerCase().includes(filter.title.toLowerCase())) {
                 return false;
             }
 
-            return true; // Якщо жоден з фільтрів не заблокував задачу, повертаємо її
+            return true;
         });
     };
 

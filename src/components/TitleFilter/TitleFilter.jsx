@@ -1,8 +1,10 @@
-import Button from '../Button/Button';
 import styles from './TitleFilter.module.css';
-import { FaCheck } from 'react-icons/fa6';
 
-const TitleFilter = () => {
+const TitleFilter = ({ updateTitleFilter }) => {
+    const handleTilteChange = e => {
+        updateTitleFilter(e.target.value);
+    };
+
     return (
         <div className={styles.formButtonContainer}>
             <form className={styles.titleForm}>
@@ -11,12 +13,10 @@ const TitleFilter = () => {
                         type='text'
                         className={styles.textInput}
                         placeholder='Введіть назву...'
+                        onChange={handleTilteChange}
                     />
                 </label>
             </form>
-            <Button className={styles.acceptButton}>
-                <FaCheck className={styles.acceptIcon} />
-            </Button>
         </div>
     );
 };

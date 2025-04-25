@@ -3,8 +3,8 @@ import 'react-day-picker/style.css';
 import { useState, useRef, useEffect } from 'react';
 import styles from './Calendar.module.css';
 
-const Calendar = ({ className, label }) => {
-    const [selected, setSelected] = useState(null);
+const Calendar = ({ className, label, value, onChange }) => {
+    const [selected, setSelected] = useState(value ? new Date(value) : null);
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef(null);
 
@@ -27,6 +27,13 @@ const Calendar = ({ className, label }) => {
             fontWeight: 'bold',
         },
     };
+
+    // Оновлення батьківського компонента при зміні дати
+    useEffect(() => {
+        if (selected && onChange) {
+            onChange(selected.toISOString());
+        }
+    }, [selected, onChange]);
 
     return (
         <div className='datePickerContainer' ref={wrapperRef}>
