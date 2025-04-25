@@ -11,9 +11,8 @@ const schema = Yup.object().shape({
     title: Yup.string()
         .required('Назва обовʼязкова')
         .min(2, 'Максимум 2 символи')
-        .max(30, 'Максимум 30 символів')
-        .required('Заповність, будь ласка, поле'),
-    timer: Yup.string().required('Заповність, будь ласка, поле'),
+        .max(100, 'Максимум 100 символів')
+        .required('Заповніть, будь ласка, поле'),
 });
 
 const initialValue = {
@@ -23,7 +22,7 @@ const initialValue = {
 
 const TitleLength = () => {
     const { values } = useFormikContext();
-    return <p className={styles.symbolCount}>{values.title.length}/30</p>;
+    return <p className={styles.symbolCount}>{values.title.length}/100</p>;
 };
 
 const AddTaskModal = ({ isVisible, onClose, addTask }) => {
@@ -36,9 +35,9 @@ const AddTaskModal = ({ isVisible, onClose, addTask }) => {
             id: crypto.randomUUID(),
             title: values.title.trim(),
             timer: isTimerActive ? Number(values.timer) : null,
-            status: isTimerActive ? 'В роботі' : 'Створена',
+            status: isTimerActive ? 'В роботі' : 'Створено',
+            createdDate: now,
             startDate: isTimerActive ? now : null,
-            createdAt: now,
         });
 
         action.resetForm();
@@ -80,23 +79,15 @@ const AddTaskModal = ({ isVisible, onClose, addTask }) => {
                             </label>
                         </div>
 
-                        <div className={styles.timeInputContainer}>
-                            {isTimerActive && (
-                                <Field
-                                    className={styles.timeInput}
-                                    type='text'
-                                    name='timer'
-                                    placeholder='60'
-                                />
-                            )}
-                            {isTimerActive && (
-                                <ErrorMessage
-                                    name='timer'
-                                    className={styles.timerError}
-                                    component='div'
-                                />
-                            )}
-                        </div>
+                        {isTimerActive && (
+                            <Field
+                                className={styles.timeInput}
+                                type='text'
+                                name='timer'
+                                placeholder='60'
+                                required
+                            />
+                        )}
                     </div>
 
                     <Button className={styles.createButton} type='submit'>

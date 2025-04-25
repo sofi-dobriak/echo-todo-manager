@@ -29,6 +29,18 @@
 
 .taskText {
   background-color: #fff;
+  position: relative;
+}
+
+.itemButtonOptions {
+  padding: 2px;
+  position: absolute;
+  bottom: 2px;
+  right: 6px;
+}
+
+.itemOptions {
+  font-size: 16px;
 }
 
 .table tr:last-child .taskText {
@@ -40,10 +52,14 @@
   border-right: none;
 }
 
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 25%;
+}
+
 .tableContainer .table .taskItem {
   cursor: pointer;
   background-color: #fff;
-  transition: all 0.15s ease-in-out;
 
   &:hover,
   &:focus {
@@ -51,4 +67,18 @@
       background-color: #f3faff;
     }
   }
+}
+
+.contextMenu {
+  position: absolute;
+  background-color: #f3faff;
+  border: 1px solid #3a7190;
+  border-radius: 4px;
+  padding: 4px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  right: -60px;
+  bottom: 0;
+  font-size: 16px;
 }

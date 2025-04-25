@@ -6,7 +6,7 @@ import StatusFilter from '../StatusFilter/StatusFilter';
 import DataFilter from '../DataFilter/DataFilter';
 import TitleFilter from '../TitleFilter/TitleFilter';
 
-const FilterBar = () => {
+const FilterBar = ({ tasks }) => {
     const [selectedFilter, setSelectedFilter] = useState('');
     const [isStatus, setIsStatus] = useState(false);
     const [isData, setIsData] = useState(false);

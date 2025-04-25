@@ -3,7 +3,6 @@
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 120px;
-  position: relative;
 }
 
 .table {
@@ -30,7 +29,6 @@
   border-right: 1px solid #3a7190;
   background-color: #fff;
   height: 50px;
-  position: relative;
 }
 
 .taskText:last-child {
@@ -49,16 +47,4 @@
 .table,
 .table th:last-child {
   border-right: none;
-}
-
-.analyticCalendarRow,
-.analyticCalendarRow {
-  font-family: inherit;
-  padding: 10px;
-  position: absolute;
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  left: 8px;
-  bottom: 4px;
 }

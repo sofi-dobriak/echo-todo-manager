@@ -82,10 +82,6 @@
   color: var(--text-color);
 }
 
-.timeInputContainer {
-  position: relative;
-}
-
 .timeInput {
   display: block;
   border: 1px solid transparent;
@@ -94,6 +90,7 @@
   max-width: 210px;
   padding: 6px;
   text-align: center;
+  transition: all 0.15s ease-in-out;
 
   &::placeholder {
     text-align: center;

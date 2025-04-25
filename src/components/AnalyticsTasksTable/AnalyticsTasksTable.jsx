@@ -1,4 +1,3 @@
-import AnalyticCalendar from '../AnalyticCalendar/AnalyticCalendar';
 import styles from './AnalyticsTasksTable.module.css';
 
 const AnalyticsTasksTable = () => {
@@ -19,7 +18,10 @@ const AnalyticsTasksTable = () => {
                 <tbody>
                     <tr className={styles.taskItem}>
                         <td className={styles.taskText}>
-                            <AnalyticCalendar className={styles.analyticCalendarRow} label='Від' />
+                            <label>
+                                <span>Від</span>
+                                <input type='date' />
+                            </label>
                         </td>
                         <td className={styles.taskText} rowSpan={2}>
                             0
@@ -42,7 +44,10 @@ const AnalyticsTasksTable = () => {
                     </tr>
                     <tr className={styles.taskItem}>
                         <td className={`${styles.taskText} ${styles.second}`}>
-                            <AnalyticCalendar className={styles.analyticCalendarRow} label='До' />
+                            <label>
+                                <span>До</span>
+                                <input type='date' />
+                            </label>
                         </td>
                     </tr>
                 </tbody>
