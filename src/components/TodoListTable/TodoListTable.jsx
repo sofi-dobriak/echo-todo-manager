@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import styles from './TodoListTable.module.css';
-import { BsThreeDots } from 'react-icons/bs';
-import Button from '../Button/Button';
 import TaskContextMenu from '../TaskContextMenu/TaskContextMenu';
 
 const TodoListTable = ({
@@ -13,8 +11,7 @@ const TodoListTable = ({
     handleComplete,
     handleShowAnalytic,
 }) => {
-    const [hoveredId, setHoveredId] = useState(null);
-    const [activeMenuId, setActiveMenuId] = useState(null);
+    const [clickedId, setClickedId] = useState(null);
 
     const formattedDateTime = isoDate => {
         if (!isoDate) return '';
@@ -45,7 +42,7 @@ const TodoListTable = ({
                             <tr
                                 className={styles.taskItem}
                                 key={id}
-                                onClick={() => setHoveredId(hoveredId === id ? null : id)}
+                                onClick={() => setClickedId(clickedId === id ? null : id)}
                             >
                                 <td className={styles.taskText}>
                                     {formattedDateTime(createdDate)}
@@ -61,18 +58,7 @@ const TodoListTable = ({
                                 </td>
                                 <td className={styles.taskText}>
                                     {title}
-                                    {hoveredId === id && status !== 'Видалено' && (
-                                        <Button
-                                            onClick={e => (
-                                                e.stopPropagation(),
-                                                setActiveMenuId(activeMenuId === id ? null : id)
-                                            )}
-                                            className={styles.itemButtonOptions}
-                                        >
-                                            <BsThreeDots className={styles.itemOptions} />
-                                        </Button>
-                                    )}
-                                    {activeMenuId === id && hoveredId === id && (
+                                    {clickedId === id && status !== 'Видалено' && (
                                         <div className={styles.contextMenu}>
                                             <TaskContextMenu
                                                 id={id}

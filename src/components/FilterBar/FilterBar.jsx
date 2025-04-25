@@ -6,7 +6,13 @@ import StatusFilter from '../StatusFilter/StatusFilter';
 import DataFilter from '../DataFilter/DataFilter';
 import TitleFilter from '../TitleFilter/TitleFilter';
 
-const FilterBar = ({ tasks }) => {
+const FilterBar = ({
+    filter,
+    updateStatusFilter,
+    updateDataFilter,
+    updateTitleFilter,
+    resetFilter,
+}) => {
     const [selectedFilter, setSelectedFilter] = useState('');
     const [isStatus, setIsStatus] = useState(false);
     const [isData, setIsData] = useState(false);
@@ -43,6 +49,7 @@ const FilterBar = ({ tasks }) => {
         setIsStatus(false);
         setIsData(false);
         setIsTitle(false);
+        resetFilter();
     };
 
     return (
@@ -82,14 +89,16 @@ const FilterBar = ({ tasks }) => {
                     </label>
                 </form>
                 <Button onClick={handleCancelChoise} className={styles.cancelButton}>
-                    <IoCloseSharp className={styles.cancelIcon} />
+                    <IoCloseSharp onClick={resetFilter} className={styles.cancelIcon} />
                 </Button>
             </div>
 
             <div className={styles.dynamicFilter}>
-                {isStatus && <StatusFilter />}
-                {isData && <DataFilter />}
-                {isTitle && <TitleFilter />}
+                {isStatus && (
+                    <StatusFilter filter={filter} updateStatusFilter={updateStatusFilter} />
+                )}
+                {isData && <DataFilter filter={filter} updateDataFilter={updateDataFilter} />}
+                {isTitle && <TitleFilter filter={filter} updateTitleFilter={updateTitleFilter} />}
             </div>
         </div>
     );

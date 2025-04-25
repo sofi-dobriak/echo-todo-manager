@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './AddTaskModal.module.css';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
@@ -27,6 +27,15 @@ const TitleLength = () => {
 
 const AddTaskModal = ({ isVisible, onClose, addTask }) => {
     const [isTimerActive, setIsTimerActive] = useState(false);
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (isVisible && inputRef.current) {
+            setTimeout(() => {
+                inputRef.current.focus();
+            }, 0);
+        }
+    }, [isVisible]);
 
     const handleSubmit = (values, action) => {
         const now = new Date().toISOString();
@@ -55,9 +64,10 @@ const AddTaskModal = ({ isVisible, onClose, addTask }) => {
                 <Form>
                     <Field
                         className={styles.taskInput}
-                        type='title'
+                        type='text'
                         name='title'
                         placeholder='Назва задачі'
+                        innerRef={inputRef}
                     />
                     <ErrorMessage name='title' className={styles.error} component='div' />
                     <TitleLength />

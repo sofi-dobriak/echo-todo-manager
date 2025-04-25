@@ -3,8 +3,8 @@ import { LuTimer } from 'react-icons/lu';
 import { IoMdTrash } from 'react-icons/io';
 import { FaPause } from 'react-icons/fa6';
 import { FaRegCheckCircle } from 'react-icons/fa';
-import { FaPlay } from 'react-icons/fa';
-import { MdAnalytics } from 'react-icons/md';
+import { IoPlay } from 'react-icons/io5';
+import { FaRegChartBar } from 'react-icons/fa';
 
 const ActionButtons = ({
     status,
@@ -44,13 +44,13 @@ const ActionButtons = ({
             return (
                 <>
                     <Button onClick={onContinue}>
-                        <FaPlay />
+                        <IoPlay />
                     </Button>
                     <Button onClick={onDelete}>
                         <IoMdTrash />
                     </Button>
                     <Button onClick={onShowAnalytic}>
-                        <MdAnalytics />
+                        <FaRegChartBar />
                     </Button>
                 </>
             );
@@ -70,7 +70,7 @@ const ActionButtons = ({
         case 'Завершено':
             return (
                 <Button onClick={onShowAnalytic}>
-                    <MdAnalytics />
+                    <FaRegChartBar />
                 </Button>
             );
 

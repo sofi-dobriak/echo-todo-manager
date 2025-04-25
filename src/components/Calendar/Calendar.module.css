@@ -110,3 +110,16 @@
 :global(.rdp) {
   --rdp-accent-color: #2D3F50 !important;
 }
+
+:global(.rdp-footer) {
+  display: none;
+}
+
+:global(.rdp-nav) {
+  height: 1.5rem;
+}
+
+:global(.rdp-month_caption) {
+  height: 1.5rem;
+  margin-bottom: 4px;
+}

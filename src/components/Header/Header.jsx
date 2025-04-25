@@ -3,12 +3,26 @@ import styles from './Header.module.css';
 import CurrentDate from '../CurrentDate/CurrentDate';
 import Button from '../Button/Button';
 
-const Header = ({ toggleModal, deleteAllTasks, tasks }) => {
+const Header = ({
+    toggleModal,
+    deleteAllTasks,
+    filter,
+    updateStatusFilter,
+    updateDataFilter,
+    updateTitleFilter,
+    resetFilter,
+}) => {
     return (
         <header className={styles.header}>
             <div className={styles.headerContainer}>
                 <CurrentDate />
-                <FilterBar tasks={tasks} />
+                <FilterBar
+                    filter={filter}
+                    updateStatusFilter={updateStatusFilter}
+                    updateDataFilter={updateDataFilter}
+                    updateTitleFilter={updateTitleFilter}
+                    resetFilter={resetFilter}
+                />
 
                 <div className={styles.optionContainer}>
                     <Button onClick={toggleModal} className={styles.taskButton}>
