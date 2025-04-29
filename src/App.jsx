@@ -6,9 +6,9 @@ import TodoListTable from './components/TodoListTable/TodoListTable';
 import AnalyticsTasksTable from './components/AnalyticsTasksTable/AnalyticsTasksTable';
 import AnalyticItemTable from './components/AnalyticItemTable/AnalyticItemTable';
 import Button from './components/Button/Button';
-import { IoArrowBack } from 'react-icons/io5';
 import ConfirmDeleteModal from './components/confirmDeleteModal/confirmDeleteModal';
 import TimeLeftModal from './components/TimeLeftModal/TimeLeftModal';
+import SetTimerModal from './components/SetTimerModal/SetTimerModal';
 
 function App() {
   const [tasks, setTasks] = useState(() => JSON.parse(localStorage.getItem('tasks')) ?? []);
@@ -25,8 +25,23 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isTimerModalVisible, setIsTimerModalVisible] = useState(false);
+  const [isContinueuModaOpen, setIsContinueuModaOpen] = useState(false);
+  const [currentTaskId, setCurrentTaskId] = useState(null);
+  const [activeTaskId, setActiveTaskId] = useState(null);
 
-  const startTimer = minutes => {
+  const startTimer = (minutes, taskId) => {
+    if (!taskId) return;
+
+    setActiveTaskId(taskId);
+
+    setTasks(prev =>
+      prev.map(task =>
+        task.id === taskId
+          ? { ...task, status: 'В роботі', startDate: new Date().toISOString() }
+          : task
+      )
+    );
+
     setTimeLeft(minutes * 60);
     setIsTimerActive(true);
     setIsTimerModalVisible(true);
@@ -37,19 +52,27 @@ function App() {
 
     if (isTimerActive && timeLeft > 0) {
       interval = setInterval(() => {
-        setTimeLeft(prevTime => {
-          const newTime = prevTime - 1;
-          return newTime;
-        });
+        setTimeLeft(prevTime => prevTime - 1);
       }, 1000);
-    } else if (timeLeft === 0) {
+    }
+
+    if (timeLeft === 0 && isTimerActive) {
       clearInterval(interval);
+
+      const taskExists = tasks.some(task => task.id === activeTaskId);
+      console.log('Task exists:', taskExists, 'Task ID:', activeTaskId);
+
+      if (taskExists && activeTaskId) {
+        setCurrentTaskId(activeTaskId);
+        setIsContinueuModaOpen(true);
+      }
+
       setIsTimerActive(false);
       setIsTimerModalVisible(false);
     }
 
     return () => clearInterval(interval);
-  }, [isTimerActive, timeLeft]);
+  }, [isTimerActive, timeLeft, tasks, activeTaskId]);
 
   const formatTime = seconds => {
     const minutes = Math.floor(seconds / 60);
@@ -125,15 +148,23 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const handleStart = id => {
+  const handleStart = (minutes, id) => {
+    setActiveTaskId(id);
+
     setTasks(prev =>
       prev.map(task =>
         task.id === id ? { ...task, status: 'В роботі', startDate: new Date().toISOString() } : task
       )
     );
+
+    setTimeLeft(minutes * 60);
+    setIsTimerActive(true);
+    setIsTimerModalVisible(true);
   };
 
   const handleStop = id => {
+    setActiveTaskId(id);
+    setCurrentTaskId(id);
     setTasks(prev =>
       prev.map(task =>
         task.id === id
@@ -145,9 +176,15 @@ function App() {
           : task
       )
     );
+
+    setIsContinueuModaOpen(false);
+    setIsTimerActive(false);
+    setIsTimerModalVisible(false);
   };
 
   const handleContinue = id => {
+    setActiveTaskId(id);
+    setCurrentTaskId(id);
     setTasks(prev =>
       prev.map(task =>
         task.id === id
@@ -155,6 +192,8 @@ function App() {
           : task
       )
     );
+
+    setIsContinueuModaOpen(false);
   };
 
   const handleComplete = id => {
@@ -165,6 +204,8 @@ function App() {
           : task
       )
     );
+    setIsTimerActive(false);
+    setIsTimerModalVisible(false);
   };
 
   const handleDelete = id => {
@@ -175,6 +216,12 @@ function App() {
     setSelectedItemId(id);
     setIsTasksAnalyticVisible(false);
     setIsItemAnalyticVisible(true);
+
+    const footerTag = document.querySelector('footer');
+    if (footerTag) {
+      footerTag.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
   };
 
   const handleBackToTasksAnalytic = () => {
@@ -215,9 +262,9 @@ function App() {
         {isItemAnalyticVisible && (
           <Button
             onClick={handleBackToTasksAnalytic}
-            style={{ marginBottom: '8px', padding: '2px' }}
+            style={{ marginBottom: '8px', padding: '8px' }}
           >
-            <IoArrowBack style={{ fontSize: '20px' }} />
+            Повернутися
           </Button>
         )}
         {isItemAnalyticVisible && <AnalyticItemTable taskId={selectedItemId} />}
@@ -236,6 +283,15 @@ function App() {
         />
         {isTimerActive && visibleTasks.length > 0 && (
           <TimeLeftModal timeLeft={formatTime(timeLeft)} isVisible={isTimerModalVisible} />
+        )}
+        {isContinueuModaOpen && (
+          <SetTimerModal
+            isVisible={isContinueuModaOpen}
+            handleStop={handleStop}
+            handleContinue={handleContinue}
+            taskId={currentTaskId}
+            onClose={onClose}
+          />
         )}
       </Container>
     </>

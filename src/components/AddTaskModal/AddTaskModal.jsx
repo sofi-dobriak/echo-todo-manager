@@ -25,29 +25,27 @@ const TitleLength = () => {
   return <p className={styles.symbolCount}>{values.title.length}/250</p>;
 };
 
-const AddTaskModal = ({
-  isVisible,
-  onClose,
-  addTask,
-  startTimer,
-  setTimeLeft,
-  setIsTimerModalVisible,
-}) => {
+const AddTaskModal = ({ isVisible, onClose, addTask, startTimer, setIsTimerModalVisible }) => {
   const [isTimerActive, setIsTimerActive] = useState(false);
 
   const handleSubmit = (values, action) => {
     const now = new Date().toISOString();
 
-    addTask({
+    const newTask = {
       id: crypto.randomUUID(),
       title: values.title.trim(),
       timer: isTimerActive ? Number(values.timer) : null,
       status: isTimerActive ? 'В роботі' : 'Створено',
       createdDate: now,
       startDate: isTimerActive ? now : null,
-    });
+    };
 
-    startTimer(values.timer);
+    addTask(newTask);
+
+    if (isTimerActive) {
+      startTimer(values.timer, newTask.id);
+      setIsTimerModalVisible(true);
+    }
 
     action.resetForm();
     onClose();
