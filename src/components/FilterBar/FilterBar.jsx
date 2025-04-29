@@ -64,7 +64,7 @@ const FilterBar = ({
                             checked={selectedFilter === 'status'}
                             onChange={handleFilterChange}
                         />
-                        <span className={styles.name}>за статусом</span>
+                        <span className={styles.name}>За статусом</span>
                     </label>
                     <label className={styles.radio}>
                         <input
@@ -74,7 +74,7 @@ const FilterBar = ({
                             checked={selectedFilter === 'data'}
                             onChange={handleFilterChange}
                         />
-                        <span className={styles.name}>за датою</span>
+                        <span className={styles.name}>За датою</span>
                     </label>
 
                     <label className={styles.radio}>
@@ -85,7 +85,7 @@ const FilterBar = ({
                             checked={selectedFilter === 'title'}
                             onChange={handleFilterChange}
                         />
-                        <span className={styles.name}>за назвою</span>
+                        <span className={styles.name}>За назвою</span>
                     </label>
                 </form>
                 <Button onClick={handleCancelChoise} className={styles.cancelButton}>

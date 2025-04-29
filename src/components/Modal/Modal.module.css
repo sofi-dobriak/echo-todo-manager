@@ -25,8 +25,6 @@
 .modalWindow {
   position: relative;
   border-radius: 4px;
-  width: 520px;
-  height: 342px;
   background-color: var(--modal-window-bg);
   padding: 80px 40px 40px;
 }

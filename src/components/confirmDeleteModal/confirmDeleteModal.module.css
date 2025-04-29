@@ -1,0 +1,38 @@
+.cancelButton {
+  padding: 2px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    .cancelIcon {
+      color: var(--hover-cancel-icon-color);
+    }
+  }
+}
+
+.cancelIcon {
+  color: var(--cancel-icon-color);
+  font-size: 24px;
+  transition: all 0.15s ease-in-out;
+}
+
+
+.confirmTitle {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.confirmButton {
+  display: block;
+  margin: 0 auto;
+  min-width: 210px;
+  height: 46px;
+  padding: 12px;
+}

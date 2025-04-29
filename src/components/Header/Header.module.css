@@ -1,6 +1,6 @@
 .header {
-  margin-top: 80px;
-  margin-bottom: 120px;
+  margin-top: 70px;
+  margin-bottom: 100px;
 }
 
 .headerContainer {
@@ -19,6 +19,17 @@
 .deleteButton {
   min-width: 146px;
   padding: 14px;
+}
+
+.taskButton:disabled {
+  background-color: #c0c2c5;
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+    color: #fff;
+    cursor: not-allowed;
+  }
 }
 
 .analitycsLink {
