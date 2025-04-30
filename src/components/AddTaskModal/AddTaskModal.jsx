@@ -6,6 +6,11 @@ import { FaCheck } from 'react-icons/fa6';
 import { IoCloseSharp } from 'react-icons/io5';
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
+import { useDispatch } from 'react-redux';
+import { addTasks } from '../../redux/tasksSlice';
+import { closeModal, openModal } from '../../redux/modalSlice';
+import { nanoid } from '@reduxjs/toolkit';
+import { startTimer } from '../../redux/timerSlice';
 
 const schema = Yup.object().shape({
   title: Yup.string()
@@ -25,14 +30,16 @@ const TitleLength = () => {
   return <p className={styles.symbolCount}>{values.title.length}/250</p>;
 };
 
-const AddTaskModal = ({ isVisible, onClose, addTask, startTimer, setIsTimerModalVisible }) => {
+const AddTaskModal = () => {
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, action) => {
     const now = new Date().toISOString();
+    const timerValue = isTimerActive ? Number(values.timer) : null;
 
     const newTask = {
-      id: crypto.randomUUID(),
+      id: nanoid(),
       title: values.title.trim(),
       timer: isTimerActive ? Number(values.timer) : null,
       status: isTimerActive ? 'В роботі' : 'Створено',
@@ -40,20 +47,23 @@ const AddTaskModal = ({ isVisible, onClose, addTask, startTimer, setIsTimerModal
       startDate: isTimerActive ? now : null,
     };
 
-    addTask(newTask);
+    dispatch(addTasks(newTask));
 
     if (isTimerActive) {
-      startTimer(values.timer, newTask.id);
-      setIsTimerModalVisible(true);
+      dispatch(startTimer({ id: newTask.id, status: newTask.status, timeLeft: timerValue }));
+      dispatch(openModal('isTimeLeftModalOpen'));
     }
 
     action.resetForm();
-    onClose();
+    dispatch(closeModal('isAddTaskModalOpen'));
   };
 
   return (
-    <Modal isVisible={isVisible} onClose={onClose} className={styles.modalWindow}>
-      <button onClick={onClose} className={styles.cancelButton}>
+    <Modal modalKey='isAddTaskModalOpen' className={styles.modalWindow}>
+      <button
+        onClick={() => dispatch(closeModal('isAddTaskModalOpen'))}
+        className={styles.cancelButton}
+      >
         <IoCloseSharp className={styles.cancelIcon} />
       </button>
 

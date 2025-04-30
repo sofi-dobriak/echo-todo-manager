@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import styles from './TodoListTable.module.css';
-import TaskContextMenu from '../TaskContextMenu/TaskContextMenu';
+import { useSelector } from 'react-redux';
+import { selectFilteredTasks } from '../../redux/tasksSlice';
+import ActionButtons from '../ActionButtons/ActionButtons';
 
-const TodoListTable = ({
-  tasks,
-  handleStop,
-  handleDelete,
-  handleComplete,
-  handleShowAnalytic,
-  openTimerModal,
-}) => {
+const TodoListTable = ({}) => {
+  const tasks = useSelector(selectFilteredTasks);
   const [clickedId, setClickedId] = useState(null);
 
   const formattedDateTime = isoDate => {
@@ -23,7 +19,7 @@ const TodoListTable = ({
   };
 
   return (
-    <main className={styles.tableContainer}>
+    <div className={styles.tableContainer}>
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr className={styles.tr}>
@@ -52,15 +48,7 @@ const TodoListTable = ({
                 {title}
                 {clickedId === id && status !== 'Видалено' && (
                   <div className={styles.contextMenu}>
-                    <TaskContextMenu
-                      id={id}
-                      status={status}
-                      openTimerModal={openTimerModal}
-                      onStop={handleStop}
-                      onComplete={handleComplete}
-                      onDelete={handleDelete}
-                      onShowAnalytic={handleShowAnalytic}
-                    />
+                    <ActionButtons id={id} status={status} />
                   </div>
                 )}
               </td>
@@ -69,7 +57,7 @@ const TodoListTable = ({
           ))}
         </tbody>
       </table>
-    </main>
+    </div>
   );
 };
 

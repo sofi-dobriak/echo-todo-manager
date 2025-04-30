@@ -17,15 +17,16 @@ const slice = createSlice({
     },
     decrementTimer: state => {
       if (state.timeLeft > 0) {
-        state.timerLeft -= 1;
+        state.timeLeft -= 1;
       }
     },
     startTimer: (state, action) => {
-      const { id, status } = action.payload;
+      const { id, status, timeLeft } = action.payload;
       state.activeTaskId = id;
       state.currentTaskId = id;
       state.currentStatus = status || null;
       state.isActive = true;
+      state.timeLeft = timeLeft || 0;
     },
     stopTimer: state => {
       state.isActive = false;

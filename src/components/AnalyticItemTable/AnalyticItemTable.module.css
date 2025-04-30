@@ -37,3 +37,9 @@
 .table th:last-child {
   border-right: none;
 }
+
+.goBack {
+  margin-bottom: 8px;
+  padding: 14px;
+  min-width: 142px;
+}

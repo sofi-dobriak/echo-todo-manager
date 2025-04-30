@@ -15,7 +15,7 @@ const slice = createSlice({
     addTasks: (state, action) => {
       state.tasks.push(action.payload);
     },
-    updateTaskStats: (state, action) => {
+    updateTaskStatus: (state, action) => {
       const { id, status, dateKey } = action.payload;
       const task = state.tasks.find(task => task.id === id);
 
@@ -38,26 +38,27 @@ const slice = createSlice({
   },
 });
 
-export const { addTasks, editTask, deleteAllTasks, updateTaskStats } = slice.actions;
+export const { addTasks, editTask, deleteAllTasks, updateTaskStatus } = slice.actions;
 export const tasksReducer = slice.reducer;
 
 export const selectTasks = state => state.tasks.tasks;
+
 export const selectFilteredTasks = createSelector(
   [selectTasks, selectFilters],
   (tasks, filters) => {
-    return tasks.filter(task => {
-      const { status, dateRage, title } = filters;
+    const { status, dateRange, title } = filters;
 
-      if (status && task.state.toLowerCase() !== status.toLowerCase()) {
+    return tasks.filter(task => {
+      if (status && task.status.toLowerCase() !== status.toLowerCase()) {
         return false;
       }
 
-      if (dateRage.start && dateRage.end) {
+      if (dateRange.start && dateRange.end) {
         const createDate = new Date(task.createdDate);
-        const startDate = new Date(dateRage.start);
-        const endDate = new Date(dateRage.end);
+        const startDate = new Date(dateRange.start);
+        const endDate = new Date(dateRange.end);
 
-        if (createDate < startDate && createDate > endDate) {
+        if (createDate < startDate || createDate > endDate) {
           return false;
         }
       }
@@ -70,3 +71,7 @@ export const selectFilteredTasks = createSelector(
     });
   }
 );
+
+export const selectTaskById = (state, id) => {
+  return state.tasks.tasks.find(task => task.id === id);
+};

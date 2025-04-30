@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  filters: {
-    status: '',
-    dateRange: { start: '', end: '' },
-    title: '',
-  },
+  status: '',
+  dateRange: { start: '', end: '' },
+  title: '',
 };
 
 const slice = createSlice({

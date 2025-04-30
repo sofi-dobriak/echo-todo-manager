@@ -38,12 +38,3 @@ body {
   color: var(--text-color);
   font-size: 14px;
 }
-
-.empty {
-  text-align: center;
-  font-weight: 600;
-  font-size: 24px;
-
-  margin-bottom: 80px;
-  color: #c5d8e3;
-}

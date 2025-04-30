@@ -5,81 +5,101 @@ import { FaPause } from 'react-icons/fa6';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { IoPlay } from 'react-icons/io5';
 import { FaRegChartBar } from 'react-icons/fa';
+import { selectTasks, updateTaskStatus } from '../../redux/tasksSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { showItemAnalytic } from '../../redux/itemAnalyticSlice';
 
-const ActionButtons = ({
-    status,
-    onStart,
-    onStop,
-    onContinue,
-    onComplete,
-    onDelete,
-    onShowAnalytic,
-}) => {
-    switch (status) {
-        case 'Створено':
-            return (
-                <>
-                    <Button onClick={onStart}>
-                        <LuTimer />
-                    </Button>
-                    <Button onClick={onDelete}>
-                        <IoMdTrash />
-                    </Button>
-                </>
-            );
+const ActionButtons = ({ id, status }) => {
+  const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
 
-        case 'В роботі':
-            return (
-                <>
-                    <Button onClick={onStop}>
-                        <FaPause />
-                    </Button>
-                    <Button onClick={onComplete}>
-                        <FaRegCheckCircle />
-                    </Button>
-                </>
-            );
+  const handleStart = () => {
+    dispatch(updateTaskStatus({ id, status: 'В роботі', dateKey: 'startDate' }));
+  };
 
-        case 'Зупинено':
-            return (
-                <>
-                    <Button onClick={onContinue}>
-                        <IoPlay />
-                    </Button>
-                    <Button onClick={onDelete}>
-                        <IoMdTrash />
-                    </Button>
-                    <Button onClick={onShowAnalytic}>
-                        <FaRegChartBar />
-                    </Button>
-                </>
-            );
+  const handleDelete = id => {
+    dispatch(updateTaskStatus({ id, status: 'Видалено' }));
+  };
+  const handleStop = id => {
+    dispatch(updateTaskStatus({ id, status: 'Зупинено', dateKey: 'stopDate' }));
+  };
+  const handleComplete = id => {
+    dispatch(updateTaskStatus({ id, status: 'Завершено', dateKey: 'completeDate' }));
+  };
+  const handleContinue = id => {
+    dispatch(updateTaskStatus({ id, status: 'Продовжено', dateKey: 'startDate' }));
+  };
 
-        case 'Продовжено':
-            return (
-                <>
-                    <Button onClick={onStop}>
-                        <FaPause />
-                    </Button>
-                    <Button onClick={onComplete}>
-                        <FaRegCheckCircle />
-                    </Button>
-                </>
-            );
+  const handleAnalytic = id => {
+    const task = tasks.find(task => task.id === id); // Знайдемо задачу
+    dispatch(showItemAnalytic(task));
+  };
 
-        case 'Завершено':
-            return (
-                <Button onClick={onShowAnalytic}>
-                    <FaRegChartBar />
-                </Button>
-            );
+  switch (status) {
+    case 'Створено':
+      return (
+        <>
+          <Button onClick={() => handleStart(id)}>
+            <LuTimer />
+          </Button>
+          <Button onClick={() => handleDelete(id)}>
+            <IoMdTrash />
+          </Button>
+        </>
+      );
 
-        case 'Видалено':
-            return null;
+    case 'В роботі':
+      return (
+        <>
+          <Button onClick={() => handleStop(id)}>
+            <FaPause />
+          </Button>
+          <Button onClick={() => handleComplete(id)}>
+            <FaRegCheckCircle />
+          </Button>
+        </>
+      );
 
-        default:
-            return null;
-    }
+    case 'Зупинено':
+      return (
+        <>
+          <Button onClick={() => handleContinue(id)}>
+            <IoPlay />
+          </Button>
+          <Button onClick={() => handleDelete(id)}>
+            <IoMdTrash />
+          </Button>
+          <Button onClick={() => handleAnalytic(id)}>
+            <FaRegChartBar />
+          </Button>
+        </>
+      );
+
+    case 'Продовжено':
+      return (
+        <>
+          <Button onClick={() => handleStop(id)}>
+            <FaPause />
+          </Button>
+          <Button onClick={() => handleComplete(id)}>
+            <FaRegCheckCircle />
+          </Button>
+        </>
+      );
+
+    case 'Завершено':
+      return (
+        <Button onClick={() => handleAnalytic(id)}>
+          <FaRegChartBar />
+        </Button>
+      );
+
+    case 'Видалено':
+      return null;
+
+    default:
+      return null;
+  }
 };
 
 export default ActionButtons;

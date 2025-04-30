@@ -1,15 +1,7 @@
 import ActionButtons from '../ActionButtons/ActionButtons';
 import styles from './TaskContextMenu.module.css';
 
-const TaskContextMenu = ({
-  id,
-  status,
-  onStop,
-  onComplete,
-  onDelete,
-  onShowAnalytic,
-  openTimerModal,
-}) => {
+const TaskContextMenu = () => {
   return (
     <div className={styles.actionButtonsContainer}>
       <ActionButtons
