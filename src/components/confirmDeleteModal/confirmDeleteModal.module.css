@@ -1,8 +1,13 @@
+.modalWindow {
+  padding: 30px;
+  padding-top: 50px;
+}
+
 .cancelButton {
   padding: 2px;
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 12px;
+  right: 12px;
   background-color: transparent;
   border: none;
   display: flex;
@@ -26,7 +31,7 @@
 
 .confirmTitle {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .confirmButton {

@@ -1,40 +1,40 @@
+import { useState } from 'react';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import styles from './SetTimerModal.module.css';
 
-const SetTimerModal = ({
-  handleStop,
-  handleContinue,
-  taskId,
-  isVisible,
-  paddingTop = '40px',
-  paddingLeft = '20px',
-  paddingRight = '20px',
-  width = '480px',
-  height = '212px',
-  paddingBottom = '40px',
-  onClose = { onClose },
-}) => {
+const SetTimerModal = ({ isVisible, onClose, onStart, onContinue, taskId, status }) => {
+  const [timerValue, setTimerValue] = useState('');
+
+  const handleAction = () => {
+    if (status === 'Зупинено') {
+      const minutes = timerValue && !isNaN(timerValue) ? Number(timerValue) : null;
+      onContinue(minutes, taskId);
+      setTimerValue('');
+      onClose();
+    } else {
+      if (timerValue && !isNaN(timerValue)) {
+        onStart(Number(timerValue), taskId);
+        setTimerValue('');
+        onClose();
+      }
+    }
+  };
+
   return (
-    <Modal
-      isVisible={isVisible}
-      width={width}
-      height={height}
-      paddingTop={paddingTop}
-      paddingLeft={paddingLeft}
-      paddingRight={paddingRight}
-      paddingBottom={paddingBottom}
-      onClose={onClose}
-    >
-      <h2 className={styles.title}>Час сплив</h2>
-      <div className={styles.buttonsContainer}>
-        <Button className={styles.button} onClick={() => handleContinue(taskId)}>
-          Продовжити
-        </Button>
-        <Button className={styles.button} onClick={() => handleStop(taskId)}>
-          Зупинити
-        </Button>
-      </div>
+    <Modal onClose={onClose} isVisible={isVisible} className={styles.setTimerModalWindow}>
+      <input
+        value={timerValue}
+        onChange={e => setTimerValue(e.target.value)}
+        type='text'
+        name='timer'
+        placeholder='60'
+        className={styles.timerInput}
+        required
+      />
+      <Button onClick={handleAction} className={styles.timerButton}>
+        {status === 'Зупинено' ? 'Продовжити' : 'Почати'}
+      </Button>
     </Modal>
   );
 };

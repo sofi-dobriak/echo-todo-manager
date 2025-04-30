@@ -52,7 +52,7 @@ const AddTaskModal = ({ isVisible, onClose, addTask, startTimer, setIsTimerModal
   };
 
   return (
-    <Modal isVisible={isVisible} onClose={onClose}>
+    <Modal isVisible={isVisible} onClose={onClose} className={styles.modalWindow}>
       <button onClick={onClose} className={styles.cancelButton}>
         <IoCloseSharp className={styles.cancelIcon} />
       </button>

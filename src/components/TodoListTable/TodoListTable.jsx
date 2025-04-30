@@ -4,12 +4,11 @@ import TaskContextMenu from '../TaskContextMenu/TaskContextMenu';
 
 const TodoListTable = ({
   tasks,
-  handleStart,
   handleStop,
   handleDelete,
-  handleContinue,
   handleComplete,
   handleShowAnalytic,
+  openTimerModal,
 }) => {
   const [clickedId, setClickedId] = useState(null);
 
@@ -56,9 +55,8 @@ const TodoListTable = ({
                     <TaskContextMenu
                       id={id}
                       status={status}
-                      onStart={handleStart}
+                      openTimerModal={openTimerModal}
                       onStop={handleStop}
-                      onContinue={handleContinue}
                       onComplete={handleComplete}
                       onDelete={handleDelete}
                       onShowAnalytic={handleShowAnalytic}

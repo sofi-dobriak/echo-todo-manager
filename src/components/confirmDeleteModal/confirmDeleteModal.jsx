@@ -12,13 +12,7 @@ const ConfirmDeleteModal = ({
   height = '200px',
 }) => {
   return (
-    <Modal
-      isVisible={isVisible}
-      onClose={onClose}
-      paddingTop={paddingTop}
-      width={width}
-      height={height}
-    >
+    <Modal isVisible={isVisible} onClose={onClose} className={styles.modalWindow}>
       <button onClick={onClose} className={styles.cancelButton}>
         <IoCloseSharp className={styles.cancelIcon} />
       </button>

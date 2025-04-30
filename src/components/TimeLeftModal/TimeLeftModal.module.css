@@ -1,6 +1,6 @@
 .modalWindow {
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   right: -200px;
   background-color: var(--modal-window-bg);
   display: flex;
@@ -14,5 +14,5 @@
 }
 
 .modalVisible {
-  right: 80px;
+  right: 20px;
 }

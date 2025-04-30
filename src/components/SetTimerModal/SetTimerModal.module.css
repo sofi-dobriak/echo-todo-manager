@@ -1,18 +1,28 @@
-.title {
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 30px;
+.setTimerModalWindow {
+  padding: 40px;
 }
 
-.buttonsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.button {
+.timerInput {
+  border: 1px solid transparent;
+  border-radius: 4px;
   width: 100%;
-  max-width: 210px;
-  height: 46px;
+  max-width: 440px;
+  background-color: var(--input-bg-color);
   padding: 12px;
+  margin-bottom: 6px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: var(--hover-border-color);
+  }
+
+  margin-bottom: 20px;
+}
+
+.timerButton {
+  display: block;
+  min-width: 210px;
+  height: 54px;
 }

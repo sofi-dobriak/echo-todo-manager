@@ -1,24 +1,22 @@
-import { useState } from 'react';
 import ActionButtons from '../ActionButtons/ActionButtons';
 import styles from './TaskContextMenu.module.css';
 
 const TaskContextMenu = ({
   id,
   status,
-  onStart,
   onStop,
-  onContinue,
   onComplete,
   onDelete,
   onShowAnalytic,
+  openTimerModal,
 }) => {
   return (
     <div className={styles.actionButtonsContainer}>
       <ActionButtons
         status={status}
-        onStart={() => onStart(minutes, id)}
+        onStart={() => openTimerModal(id, status)}
         onStop={() => onStop(id)}
-        onContinue={() => onContinue(id)}
+        onContinue={() => openTimerModal(id, status)}
         onComplete={() => onComplete(id)}
         onDelete={() => onDelete(id)}
         onShowAnalytic={() => onShowAnalytic(id)}

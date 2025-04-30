@@ -28,8 +28,10 @@ const TimeLeftModal = ({ isVisible, timeLeft }) => {
   if (!display) return null;
 
   return (
-    <div className={`${styles.modalWindow} ${animationClass}`}>
-      <p>{currentTime}</p>
+    <div className={styles.modalWrapper}>
+      <div className={`${styles.modalWindow} ${animationClass}`}>
+        <p>{currentTime}</p>
+      </div>
     </div>
   );
 };

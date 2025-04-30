@@ -1,17 +1,7 @@
 import styles from './Modal.module.css';
 import { useEffect } from 'react';
 
-const Modal = ({
-  isVisible,
-  onClose,
-  children,
-  paddingTop = '80px',
-  paddingLeft = '40px',
-  paddingRight = '40px',
-  paddingBottom = '40px',
-  width = '520px',
-  height = '342px',
-}) => {
+const Modal = ({ isVisible, onClose, children, className = '' }) => {
   const handleWrapperClick = e => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -32,12 +22,7 @@ const Modal = ({
       onClick={handleWrapperClick}
       className={`${styles.modalWrapper} ${isVisible ? styles.modalVisible : ''}`}
     >
-      <div
-        className={styles.modalWindow}
-        style={{ paddingTop, paddingLeft, paddingRight, paddingBottom, width, height }}
-      >
-        {children}
-      </div>
+      <div className={`${styles.modalWindow} ${className}`}>{children}</div>
     </div>
   );
 };

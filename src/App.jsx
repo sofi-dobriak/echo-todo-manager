@@ -8,6 +8,7 @@ import AnalyticItemTable from './components/AnalyticItemTable/AnalyticItemTable'
 import Button from './components/Button/Button';
 import ConfirmDeleteModal from './components/confirmDeleteModal/confirmDeleteModal';
 import TimeLeftModal from './components/TimeLeftModal/TimeLeftModal';
+import ContinueuStopModal from './components/ContinueuStopModal/ContinueuStopModal';
 import SetTimerModal from './components/SetTimerModal/SetTimerModal';
 
 function App() {
@@ -26,8 +27,16 @@ function App() {
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isTimerModalVisible, setIsTimerModalVisible] = useState(false);
   const [isContinueuModaOpen, setIsContinueuModaOpen] = useState(false);
-  const [currentTaskId, setCurrentTaskId] = useState(null);
   const [activeTaskId, setActiveTaskId] = useState(null);
+  const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
+  const [currentTaskId, setCurrentTaskId] = useState(null);
+  const [currentStatus, setCurrentStatus] = useState(null);
+
+  const openTimerModal = (taskId, status) => {
+    setCurrentTaskId(taskId);
+    setCurrentStatus(status);
+    setIsTimerModalOpen(true);
+  };
 
   const startTimer = (minutes, taskId) => {
     if (!taskId) return;
@@ -182,9 +191,9 @@ function App() {
     setIsTimerModalVisible(false);
   };
 
-  const handleContinue = id => {
+  const handleContinue = (minutes, id) => {
     setActiveTaskId(id);
-    setCurrentTaskId(id);
+
     setTasks(prev =>
       prev.map(task =>
         task.id === id
@@ -192,6 +201,10 @@ function App() {
           : task
       )
     );
+
+    setTimeLeft(minutes * 60);
+    setIsTimerActive(true);
+    setIsTimerModalVisible(true);
 
     setIsContinueuModaOpen(false);
   };
@@ -250,10 +263,10 @@ function App() {
         />
         <TodoListTable
           tasks={visibleTasks}
-          handleStart={handleStart}
-          handleStop={handleStop}
+          openTimerModal={openTimerModal}
           handleContinue={handleContinue}
           handleComplete={handleComplete}
+          handleStop={handleStop}
           handleDelete={handleDelete}
           handleShowAnalytic={handleShowAnalytic}
         />
@@ -262,7 +275,7 @@ function App() {
         {isItemAnalyticVisible && (
           <Button
             onClick={handleBackToTasksAnalytic}
-            style={{ marginBottom: '8px', padding: '8px' }}
+            style={{ marginBottom: '8px', padding: '14px', minWidth: '142px' }}
           >
             Повернутися
           </Button>
@@ -285,7 +298,7 @@ function App() {
           <TimeLeftModal timeLeft={formatTime(timeLeft)} isVisible={isTimerModalVisible} />
         )}
         {isContinueuModaOpen && (
-          <SetTimerModal
+          <ContinueuStopModal
             isVisible={isContinueuModaOpen}
             handleStop={handleStop}
             handleContinue={handleContinue}
@@ -293,6 +306,15 @@ function App() {
             onClose={onClose}
           />
         )}
+
+        <SetTimerModal
+          isVisible={isTimerModalOpen}
+          onClose={() => setIsTimerModalOpen(false)}
+          onStart={handleStart}
+          onContinue={handleContinue}
+          taskId={currentTaskId}
+          status={currentStatus}
+        />
       </Container>
     </>
   );
