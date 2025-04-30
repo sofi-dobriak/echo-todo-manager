@@ -3,20 +3,11 @@ import styles from './TodoListTable.module.css';
 import { useSelector } from 'react-redux';
 import { selectFilteredTasks } from '../../redux/tasksSlice';
 import ActionButtons from '../ActionButtons/ActionButtons';
+import { formattedDateTime } from '../../utils/formattedDateTime';
 
 const TodoListTable = ({}) => {
   const tasks = useSelector(selectFilteredTasks);
   const [clickedId, setClickedId] = useState(null);
-
-  const formattedDateTime = isoDate => {
-    if (!isoDate) return '';
-
-    const date = new Date(isoDate);
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-
-    return `${date.toLocaleDateString('uk-UA')} ${hours}:${minutes}`;
-  };
 
   return (
     <div className={styles.tableContainer}>

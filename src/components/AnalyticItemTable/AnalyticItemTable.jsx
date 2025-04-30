@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button';
 import styles from './AnalyticItemTable.module.css';
 import { hideItemAnalytic } from '../../redux/itemAnalyticSlice';
+import { formattedDateTime } from '../../utils/formattedDateTime';
 
 const AnalyticItemTable = () => {
   const dispatch = useDispatch();
@@ -31,8 +32,8 @@ const AnalyticItemTable = () => {
             <tr className={styles.taskItem}>
               <td className={styles.taskText}>{currentTask.title}</td>
               <td className={styles.taskText}>{currentTask.status}</td>
-              <td className={styles.taskText}>{currentTask.startDate}</td>
-              <td className={styles.taskText}>{currentTask.completeDate}</td>
+              <td className={styles.taskText}>{formattedDateTime(currentTask.startDate)}</td>
+              <td className={styles.taskText}>{formattedDateTime(currentTask.completeDate)}</td>
               <td className={styles.taskText}>{currentTask.attempts}</td>
               <td className={styles.taskText}>{currentTask.totalTime}</td>
               <td className={styles.taskText}>{currentTask.averageTime}</td>
