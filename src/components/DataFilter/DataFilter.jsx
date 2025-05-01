@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import styles from './DataFilter.module.css';
 import { FaCheck } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
-import { updateDataFilter } from '../../redux/filtersSlice';
+import { updateDataFilter } from '../../redux/filterSlice/slice';
 
 const DataFilter = () => {
   const dispatch = useDispatch();

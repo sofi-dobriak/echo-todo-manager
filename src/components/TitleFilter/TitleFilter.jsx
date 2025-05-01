@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import styles from './TitleFilter.module.css';
-import { updateTitleFilter } from '../../redux/filtersSlice';
+import { updateTitleFilter } from '../../redux/filterSlice/slice';
 
 const TitleFilter = () => {
   const dispatch = useDispatch();

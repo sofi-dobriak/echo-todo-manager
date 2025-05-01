@@ -1,9 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { tasksReducer } from './tasksSlice';
-import { filtersReducer } from './filtersSlice';
-import { timerReducer } from './timerSlice';
-import { modalsReducer } from './modalSlice';
-import { itemAnalyticSlice } from './itemAnalyticSlice';
 
 import {
   persistStore,
@@ -16,6 +11,10 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { filtersReducer } from './filterSlice/slice';
+import { tasksReducer } from './tasksSlice/slice';
+import { modalsReducer } from './modalSlice/slice';
+import { itemAnalyticSliceReducer } from './itemAnalyticSlice/slice';
 
 const persistConfig = {
   key: 'tasks',
@@ -28,8 +27,7 @@ export const store = configureStore({
     tasks: persistReducer(persistConfig, tasksReducer),
     filters: filtersReducer,
     modals: modalsReducer,
-    timer: timerReducer,
-    itemAnalytic: itemAnalyticSlice,
+    itemAnalytic: itemAnalyticSliceReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

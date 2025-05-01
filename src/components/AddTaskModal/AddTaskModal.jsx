@@ -5,10 +5,10 @@ import { IoCloseSharp } from 'react-icons/io5';
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addTasks } from '../../redux/tasksSlice';
-import { closeModal } from '../../redux/modalSlice';
+import { addTasks } from '../../redux/tasksSlice/slice';
+import { closeModal } from '../../redux/modalSlice/slice';
+import { hideItemAnalytic } from '../../redux/itemAnalyticSlice/slice';
 import { nanoid } from '@reduxjs/toolkit';
-import { hideItemAnalytic } from '../../redux/itemAnalyticSlice';
 
 const schema = Yup.object().shape({
   title: Yup.string()

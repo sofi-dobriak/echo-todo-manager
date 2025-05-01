@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './StatusFilter.module.css';
-import { selectFilters, updateStatusFilter } from '../../redux/filtersSlice';
+import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
+import { updateStatusFilter } from '../../redux/filterSlice/slice';
 
 const StatusFilter = () => {
   const dispatch = useDispatch();
-  const { status } = useSelector(selectFilters);
+  const { status } = useSelector(selectFilteredTasks);
 
   const handleStatusChange = e => {
     dispatch(updateStatusFilter(e.target.value));

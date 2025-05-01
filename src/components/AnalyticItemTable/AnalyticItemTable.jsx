@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button';
 import styles from './AnalyticItemTable.module.css';
-import { hideItemAnalytic, selectCurrentTask } from '../../redux/itemAnalyticSlice';
 import { formattedDateTime } from '../../utils/formattedDateTime';
+import { selectCurrentTask } from '../../redux/itemAnalyticSlice/selectors';
+import { hideItemAnalytic } from '../../redux/itemAnalyticSlice/slice';
 
 const AnalyticItemTable = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const AnalyticItemTable = () => {
   return (
     <div>
       <Button onClick={() => dispatch(hideItemAnalytic())} className={styles.goBack}>
-        Повернутися
+        Загальна статистика
       </Button>
       <div className={styles.tableContainer}>
         <table className={styles.table}>

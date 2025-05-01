@@ -28,6 +28,5 @@ const slice = createSlice({
 
 export const { updateStatusFilter, updateDataFilter, updateTitleFilter, resetFilters } =
   slice.actions;
-export const filtersReducer = slice.reducer;
 
-export const selectFilters = state => state.filters;
+export const filtersReducer = slice.reducer;

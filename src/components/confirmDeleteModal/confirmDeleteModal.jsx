@@ -3,9 +3,9 @@ import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import styles from './confirmDeleteModal.module.css';
 import { IoCloseSharp } from 'react-icons/io5';
-import { closeModal } from '../../redux/modalSlice';
-import { deleteAllTasks } from '../../redux/tasksSlice';
-import { hideItemAnalytic } from '../../redux/itemAnalyticSlice';
+import { deleteAllTasks } from '../../redux/tasksSlice/slice';
+import { hideItemAnalytic } from '../../redux/itemAnalyticSlice/slice';
+import { closeModal } from '../../redux/modalSlice/slice';
 
 const ConfirmDeleteModal = () => {
   const dispatch = useDispatch();

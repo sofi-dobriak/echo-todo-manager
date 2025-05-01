@@ -1,13 +1,10 @@
-import { useState } from 'react';
 import styles from './TodoListTable.module.css';
 import { useSelector } from 'react-redux';
-import { selectFilteredTasks } from '../../redux/tasksSlice';
-import ActionButtons from '../ActionButtons/ActionButtons';
-import { formattedDateTime } from '../../utils/formattedDateTime';
+import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
+import TodoItem from '../TodoItem/TodoItem';
 
 const TodoListTable = ({}) => {
   const tasks = useSelector(selectFilteredTasks);
-  const [clickedId, setClickedId] = useState(null);
 
   return (
     <div className={styles.tableContainer}>
@@ -24,27 +21,16 @@ const TodoListTable = ({}) => {
         </thead>
         <tbody>
           {tasks.map(({ id, title, status, startDate, createdDate, stopDate, completeDate }) => (
-            <tr
-              className={`${styles.taskItem} ${status === 'Видалено' ? styles.deletedTask : ''}`}
+            <TodoItem
               key={id}
-              onClick={() => setClickedId(clickedId === id ? null : id)}
-            >
-              <td className={styles.taskText}>{formattedDateTime(createdDate)}</td>
-              <td className={styles.taskText}>{startDate ? formattedDateTime(startDate) : ''}</td>
-              <td className={styles.taskText}>{stopDate ? formattedDateTime(stopDate) : ''}</td>
-              <td className={styles.taskText}>
-                {completeDate ? formattedDateTime(completeDate) : ''}
-              </td>
-              <td className={styles.taskText}>
-                {title}
-                {clickedId === id && status !== 'Видалено' && (
-                  <div className={styles.contextMenu}>
-                    <ActionButtons id={id} status={status} />
-                  </div>
-                )}
-              </td>
-              <td className={styles.taskText}>{status}</td>
-            </tr>
+              id={id}
+              title={title}
+              status={status}
+              startDate={startDate}
+              createdDate={createdDate}
+              stopDate={stopDate}
+              completeDate={completeDate}
+            />
           ))}
         </tbody>
       </table>

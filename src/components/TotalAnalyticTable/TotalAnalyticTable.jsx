@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import styles from './TotalAnalyticTable.module.css';
-import { selectTaskStatusCountsWithDateRange } from '../../redux/tasksSlice';
+import { selectTaskStatusCountsWithDateRange } from '../../redux/tasksSlice/selectors';
 
 const TotalAnalyticTable = () => {
   const taskStatusCounts = useSelector(selectTaskStatusCountsWithDateRange);

@@ -6,7 +6,7 @@ import StatusFilter from '../StatusFilter/StatusFilter';
 import DataFilter from '../DataFilter/DataFilter';
 import TitleFilter from '../TitleFilter/TitleFilter';
 import { useDispatch } from 'react-redux';
-import { resetFilters } from '../../redux/filtersSlice';
+import { resetFilters } from '../../redux/filterSlice/slice';
 
 const FilterBar = ({}) => {
   const dispatch = useDispatch();

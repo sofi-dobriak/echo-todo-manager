@@ -3,8 +3,8 @@ import styles from './Header.module.css';
 import CurrentDate from '../CurrentDate/CurrentDate';
 import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTasks } from '../../redux/tasksSlice';
-import { openModal } from '../../redux/modalSlice';
+import { selectTasks } from '../../redux/tasksSlice/selectors';
+import { openModal } from '../../redux/modalSlice/slice';
 
 const Header = ({}) => {
   const dispatch = useDispatch();

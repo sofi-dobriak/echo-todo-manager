@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Modal.module.css';
 import { useEffect } from 'react';
-import { closeModal } from '../../redux/modalSlice';
+import { closeModal } from '../../redux/modalSlice/slice';
 
 const Modal = ({ children, className = '', modalKey }) => {
   const dispatch = useDispatch();

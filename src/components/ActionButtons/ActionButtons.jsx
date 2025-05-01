@@ -5,9 +5,10 @@ import { FaPause } from 'react-icons/fa6';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { IoPlay } from 'react-icons/io5';
 import { FaRegChartBar } from 'react-icons/fa';
-import { countApproachesNumber, selectTasks, updateTaskStatus } from '../../redux/tasksSlice';
+import { selectTasks } from '../../redux/tasksSlice/selectors';
+import { countApproachesNumber, updateTaskStatus } from '../../redux/tasksSlice/slice';
+import { hideItemAnalytic, showItemAnalytic } from '../../redux/itemAnalyticSlice/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { hideItemAnalytic, showItemAnalytic } from '../../redux/itemAnalyticSlice';
 
 const ActionButtons = ({ id, status }) => {
   const dispatch = useDispatch();

@@ -13,17 +13,11 @@ const slice = createSlice({
       state.isVisibleItemAnalityc = true;
       state.currentTask = action.payload;
     },
-    hideItemAnalytic: state => {
-      state.isVisibleItemAnalityc = false;
-      state.currentTask = null;
+    hideItemAnalytic: () => {
+      return initialState;
     },
   },
 });
 
 export const { showItemAnalytic, hideItemAnalytic } = slice.actions;
-export const itemAnalyticSlice = slice.reducer;
-
-const selectItemAnalytic = state => state.itemAnalytic;
-
-export const selectSsVisibleItemAnalityc = state => selectItemAnalytic(state).isVisibleItemAnalityc;
-export const selectCurrentTask = state => selectItemAnalytic(state).currentTask;
+export const itemAnalyticSliceReducer = slice.reducer;
