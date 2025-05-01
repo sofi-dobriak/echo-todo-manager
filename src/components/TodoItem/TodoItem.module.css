@@ -1,18 +1,18 @@
 .taskItem {
   cursor: pointer;
-  background-color: #fff;
+  background-color: var(--item-bg-color);
 
   &:hover,
   &:focus {
-    background-color: #f3faff;
+    background-color: var(--hover-item-bg-color);
   }
 }
 
 .taskText {
   padding: 12px;
   text-align: center;
-  border-right: 1px solid #3a7190;
-  border-bottom: 1px solid #3a7190;
+  border-right: 1px solid var(--table-border-color);
+  border-bottom: 1px solid var(--table-border-color);
   position: relative;
 }
 
@@ -41,7 +41,7 @@
 .contextMenu {
   position: absolute;
   backdrop-filter: blur(1.2px);
-  background-color: rgba(255, 249, 249, 0.5);
+  background-color: var(--modal-wrapper-bg);
   padding: 4px;
   display: flex;
   gap: 8px;
@@ -61,10 +61,10 @@
 }
 
 .deletedTask td {
-  background-color: #f0f0f0 !important;
+  background-color: var(--delete-item-bg-color) !important;
   cursor: text;
 }
 
 .deletedTask td {
-  color: #777;
+  color: var(--delete-item-color);
 }

@@ -7,8 +7,17 @@
   --font-size: 16px;
   --text-color: #2D3F50;
 
+  --item-bg-color: #fff;
+  --table-header-bg-color: #eef4f8;
+  --table-border-color: #3a7190;
+  --table-bg-color: #f0f4f9;
+  --hover-item-bg-color: #f3faff;
+  --delete-item-bg-color: #f0f0f0;
+  --delete-item-color: #777;
+
   --hover-border-color: #3a7190;
   --hover-bg-color: #f0f4f9;
+  --hover-disabled-bg-color: #f0f4f9;
   --hover-cancel-icon-color: #fff;
   --hover-button-bg-color: #f3faff;
   --hover-button-text-color: #2D3F50;
@@ -25,6 +34,7 @@
 
   --modal-wrapper-bg: rgba(255, 249, 249, 0.5);
   --modal-window-bg: #c5d8e3;
+  --empty-text-color: #c5d8e3;
 }
 
 * {

@@ -15,9 +15,9 @@ const TodoItem = ({
 }) => {
   return (
     <tr
-      className={`${styles.taskItem} ${status === 'Видалено' ? styles.deletedTask : ''}`}
       key={id}
       onClick={() => setClickedId(clickedId === id ? null : id)}
+      className={`${styles.taskItem} ${status === 'Видалено' ? styles.deletedTask : ''}`}
     >
       <td className={styles.taskText}>{formattedDateTime(createdDate)}</td>
       <td className={styles.taskText}>{startDate ? formattedDateTime(startDate) : ''}</td>

@@ -7,6 +7,7 @@ import { updateDataFilter } from '../../redux/filterSlice/slice';
 
 const DataFilter = () => {
   const dispatch = useDispatch();
+
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 

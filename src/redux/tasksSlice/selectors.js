@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { selectFilters } from '../filterSlice/selectors';
+import { GoTasklist } from 'react-icons/go';
 
 export const selectTasks = state => state.tasks.tasks;
 

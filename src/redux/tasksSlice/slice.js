@@ -1,15 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { formatDuration } from '../../utils/formatDuration';
+import { TASK_STATUSES } from '../../constans/statuses';
 
 const initialState = {
   tasks: [],
-};
-
-export const TASK_STATUSES = {
-  IN_PROGRESS: 'В роботі',
-  PAUSED: 'Зупинено',
-  COMPLETED: 'Завершено',
-  RESUMED: 'Продовжено',
 };
 
 const slice = createSlice({

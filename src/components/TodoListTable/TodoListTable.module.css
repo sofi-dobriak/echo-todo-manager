@@ -1,5 +1,5 @@
 .tableContainer {
-  border: 1px solid #3a7190;
+  border: 1px solid var(--table-border-color);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 70px;
@@ -11,17 +11,17 @@
   border-collapse: collapse;
   border: none;
   table-layout: fixed;
-  background-color: #f0f4f9;
+  background-color: var(--table-bg-color);
   border-bottom: none;
 }
 
 .th {
-  border-bottom: 1px solid #3a7190;
-  border-right: 1px solid #3a7190;
+  border-bottom: 1px solid var(--table-border-color);
+  border-right: 1px solid var(--table-border-color);
   padding: 12px;
   text-align: center;
   font-weight: 600;
-  background-color: #eef4f8;
+  background-color: var(--table-header-bg-color);
   color: var(--text-color);
 }
 

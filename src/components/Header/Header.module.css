@@ -22,12 +22,12 @@
 }
 
 .taskButton:disabled {
-  background-color: #c0c2c5;
+  background-color: var(--hover-disabled-bg-color);
 
   &:hover,
   &:focus {
     border: 1px solid transparent;
-    color: #fff;
+    color: var(--button-text-color);
     cursor: not-allowed;
   }
 }
