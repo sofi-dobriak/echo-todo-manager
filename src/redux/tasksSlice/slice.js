@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { formatDuration } from '../../utils/formatDuration';
-import { STATUS_LABELS } from '../../constans/statusLabels';
 
 const initialState = {
   tasks: [],
+};
+
+export const TASK_STATUSES = {
+  IN_PROGRESS: 'В роботі',
+  PAUSED: 'Зупинено',
+  COMPLETED: 'Завершено',
+  RESUMED: 'Продовжено',
 };
 
 const slice = createSlice({
@@ -24,7 +30,7 @@ const slice = createSlice({
       if (!task) return;
 
       const statusHandlers = {
-        inProgress: () => {
+        [TASK_STATUSES.IN_PROGRESS]: () => {
           if (task.attempts === null) {
             slice.caseReducers.initializeAttempts(state, { payload: id });
 
@@ -33,17 +39,17 @@ const slice = createSlice({
           }
           task.startWorkTime = new Date().toISOString();
         },
-        stopped: () => {
+        [TASK_STATUSES.PAUSED]: () => {
           if (task.startWorkTime) {
             slice.caseReducers.countTimeForWork(state, { payload: id });
           }
         },
-        completed: () => {
+        [TASK_STATUSES.COMPLETED]: () => {
           if (task.startWorkTime) {
             slice.caseReducers.countTimeForWork(state, { payload: id });
           }
         },
-        continued: () => {
+        [TASK_STATUSES.RESUMED]: () => {
           task.workPeriods.push({ start: new Date().toISOString(), end: null });
         },
       };

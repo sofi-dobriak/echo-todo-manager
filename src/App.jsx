@@ -8,12 +8,12 @@ import Text from './components/Text/Text';
 import TotalAnalyticTable from './components/TotalAnalyticTable/TotalAnalyticTable';
 import { useSelector } from 'react-redux';
 import { selectFilteredTasks, selectTasks } from './redux/tasksSlice/selectors';
-import { selectSsVisibleItemAnalityc } from './redux/itemAnalyticSlice/selectors';
+import { selectIsVisibleItemAnalytic } from './redux/itemAnalyticSlice/selectors';
 
 function App() {
   const tasks = useSelector(selectTasks);
   const filterTasks = useSelector(selectFilteredTasks);
-  const isAnalyticVisible = useSelector(selectSsVisibleItemAnalityc);
+  const isAnalyticVisible = useSelector(selectIsVisibleItemAnalytic);
 
   return (
     <>

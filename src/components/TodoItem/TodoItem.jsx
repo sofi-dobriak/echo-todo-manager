@@ -1,10 +1,18 @@
-import { useState } from 'react';
 import styles from './TodoItem.module.css';
 import { formattedDateTime } from '../../utils/formattedDateTime';
 import ActionButtons from '../ActionButtons/ActionButtons';
 
-const TodoItem = ({ id, title, status, startDate, createdDate, stopDate, completeDate }) => {
-  const [clickedId, setClickedId] = useState(null);
+const TodoItem = ({
+  id,
+  title,
+  status,
+  startDate,
+  createdDate,
+  stopDate,
+  completeDate,
+  clickedId,
+  setClickedId,
+}) => {
   return (
     <tr
       className={`${styles.taskItem} ${status === 'Видалено' ? styles.deletedTask : ''}`}

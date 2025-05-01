@@ -4,4 +4,5 @@ export const STATUS_LABELS = {
   stopped: 'Зупинено',
   completed: 'Завершено',
   continued: 'Продовжено',
+  deleted: 'Видалено',
 };

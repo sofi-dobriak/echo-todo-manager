@@ -2,9 +2,11 @@ import styles from './TodoListTable.module.css';
 import { useSelector } from 'react-redux';
 import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
 import TodoItem from '../TodoItem/TodoItem';
+import { useState } from 'react';
 
 const TodoListTable = ({}) => {
   const tasks = useSelector(selectFilteredTasks);
+  const [clickedId, setClickedId] = useState(null);
 
   return (
     <div className={styles.tableContainer}>
@@ -30,6 +32,8 @@ const TodoListTable = ({}) => {
               createdDate={createdDate}
               stopDate={stopDate}
               completeDate={completeDate}
+              clickedId={clickedId}
+              setClickedId={setClickedId}
             />
           ))}
         </tbody>
