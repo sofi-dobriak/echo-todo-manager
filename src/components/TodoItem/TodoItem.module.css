@@ -61,7 +61,7 @@
 }
 
 .deletedTask td {
-  background-color: var(--delete-item-bg-color) !important;
+  background-color: var(--delete-item-bg-color);
   cursor: text;
 }
 
