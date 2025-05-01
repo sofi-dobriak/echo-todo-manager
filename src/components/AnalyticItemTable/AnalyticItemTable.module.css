@@ -22,6 +22,12 @@
   color: var(--text-color);
 }
 
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 18%;
+  text-align: left;
+}
+
 .taskText {
   padding: 12px;
   text-align: center;

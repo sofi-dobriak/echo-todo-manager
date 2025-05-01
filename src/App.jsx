@@ -1,19 +1,15 @@
-import { useEffect, useState } from 'react';
 import Container from './components/Container/Container';
 import Header from './components/Header/Header';
 import AddTaskModal from './components/AddTaskModal/AddTaskModal';
 import TodoListTable from './components/TodoListTable/TodoListTable';
-import AnalyticsTasksTable from './components/AnalyticsTasksTable/AnalyticsTasksTable';
 import AnalyticItemTable from './components/AnalyticItemTable/AnalyticItemTable';
-import Button from './components/Button/Button';
 import ConfirmDeleteModal from './components/confirmDeleteModal/confirmDeleteModal';
 import TimeLeftModal from './components/TimeLeftModal/TimeLeftModal';
-import ContinueuStopModal from './components/ContinueuStopModal/ContinueuStopModal';
 import SetTimerModal from './components/SetTimerModal/SetTimerModal';
 import { useSelector } from 'react-redux';
-import { selectAddModalOpen } from './redux/modalSlice';
 import { selectFilteredTasks, selectTasks } from './redux/tasksSlice';
 import Text from './components/Text/Text';
+import TotalAnalyticTable from './components/TotalAnalyticTable/TotalAnalyticTable';
 
 function App() {
   const tasks = useSelector(selectTasks);
@@ -32,7 +28,7 @@ function App() {
           {filterTasks.length === 0 && tasks.length > 0 && <Text>Шо по фільтрам?</Text>}
         </main>
         {isAnalyticVisible && <AnalyticItemTable />}
-        {!isAnalyticVisible && <AnalyticsTasksTable />}
+        {!isAnalyticVisible && <TotalAnalyticTable />}
 
         <AddTaskModal />
         <ConfirmDeleteModal />

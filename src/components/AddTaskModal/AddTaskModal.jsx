@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './AddTaskModal.module.css';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';

@@ -3,6 +3,7 @@ import { selectFilters } from './filtersSlice';
 import { formattedDateTime } from '../utils/formattedDateTime';
 import { formatTime } from '../utils/formatTime';
 import { formatDuration } from '../utils/formatDuration';
+import { date } from 'yup';
 
 const initialState = {
   tasks: [],
@@ -176,5 +177,38 @@ export const selectFilteredTasks = createSelector(
 
       return true;
     });
+  }
+);
+
+export const selectTaskStatusCountsWithDateRange = createSelector(
+  [selectTasks, selectFilters],
+  (tasks, { dateRange }) => {
+    const statuses = [
+      { key: 'created', value: 'Створено' },
+      { key: 'inProgress', value: 'В роботі' },
+      { key: 'continued', value: 'Продовжено' },
+      { key: 'stopped', value: 'Зупинено' },
+      { key: 'completed', value: 'Завершено' },
+      { key: 'deleted', value: 'Видалено' },
+    ];
+
+    const statusCount = Object.fromEntries(statuses.map(({ key }) => [key, 0]));
+
+    const start = dateRange.start ? new Date(dateRange.start) : null;
+    const end = dateRange.end ? new Date(dateRange.end) : null;
+    if (end) end.setHours(23, 59, 59, 999);
+
+    const filtered = tasks.filter(task => {
+      if (!start || !end) return true;
+      const taskDate = new Date(task.createdDate);
+      return taskDate >= start && taskDate <= end;
+    });
+
+    filtered.forEach(task => {
+      const match = statuses.find(status => status.value === task.status);
+      if (match) statusCount[match.key]++;
+    });
+
+    return statusCount;
   }
 );
