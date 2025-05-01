@@ -5,12 +5,14 @@ import styles from './confirmDeleteModal.module.css';
 import { IoCloseSharp } from 'react-icons/io5';
 import { closeModal } from '../../redux/modalSlice';
 import { deleteAllTasks } from '../../redux/tasksSlice';
+import { hideItemAnalytic } from '../../redux/itemAnalyticSlice';
 
 const ConfirmDeleteModal = () => {
   const dispatch = useDispatch();
 
   const handleDeleteAllTasks = () => {
     dispatch(deleteAllTasks());
+    dispatch(hideItemAnalytic());
     dispatch(closeModal('isConfirmDeleteModalOpen'));
   };
 

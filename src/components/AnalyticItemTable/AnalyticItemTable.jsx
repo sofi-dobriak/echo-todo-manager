@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button';
 import styles from './AnalyticItemTable.module.css';
-import { hideItemAnalytic } from '../../redux/itemAnalyticSlice';
+import { hideItemAnalytic, selectCurrentTask } from '../../redux/itemAnalyticSlice';
 import { formattedDateTime } from '../../utils/formattedDateTime';
 
 const AnalyticItemTable = () => {
   const dispatch = useDispatch();
-  const currentTask = useSelector(state => state.itemAnalytic.currentTask);
+  const currentTask = useSelector(selectCurrentTask);
 
   if (!currentTask) return null;
 
@@ -34,9 +34,9 @@ const AnalyticItemTable = () => {
               <td className={styles.taskText}>{currentTask.status}</td>
               <td className={styles.taskText}>{formattedDateTime(currentTask.startDate)}</td>
               <td className={styles.taskText}>{formattedDateTime(currentTask.completeDate)}</td>
-              <td className={styles.taskText}>{currentTask.attempts}</td>
-              <td className={styles.taskText}>{currentTask.totalTime}</td>
-              <td className={styles.taskText}>{currentTask.averageTime}</td>
+              <td className={styles.taskText}>{currentTask.attempts || '0'}</td>
+              <td className={styles.taskText}>{currentTask.formattedTotalTime || '00:00:00'}</td>
+              <td className={styles.taskText}>{currentTask.formattedAverageTime || '00:00:00'}</td>
             </tr>
           </tbody>
         </table>

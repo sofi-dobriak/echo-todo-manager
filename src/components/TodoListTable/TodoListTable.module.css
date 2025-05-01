@@ -101,8 +101,10 @@
   font-size: 20px;
 }
 
+
 .deletedTask td {
   background-color: #f0f0f0 !important;
+  cursor: text;
 }
 
 .deletedTask td {

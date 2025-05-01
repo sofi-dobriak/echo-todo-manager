@@ -5,9 +5,9 @@ import { FaPause } from 'react-icons/fa6';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { IoPlay } from 'react-icons/io5';
 import { FaRegChartBar } from 'react-icons/fa';
-import { selectTasks, updateTaskStatus } from '../../redux/tasksSlice';
+import { countApproachesNumber, selectTasks, updateTaskStatus } from '../../redux/tasksSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { showItemAnalytic } from '../../redux/itemAnalyticSlice';
+import { hideItemAnalytic, showItemAnalytic } from '../../redux/itemAnalyticSlice';
 
 const ActionButtons = ({ id, status }) => {
   const dispatch = useDispatch();
@@ -19,20 +19,30 @@ const ActionButtons = ({ id, status }) => {
 
   const handleDelete = id => {
     dispatch(updateTaskStatus({ id, status: 'Видалено' }));
+    dispatch(hideItemAnalytic());
   };
   const handleStop = id => {
     dispatch(updateTaskStatus({ id, status: 'Зупинено', dateKey: 'stopDate' }));
+    dispatch(hideItemAnalytic());
   };
   const handleComplete = id => {
     dispatch(updateTaskStatus({ id, status: 'Завершено', dateKey: 'completeDate' }));
   };
   const handleContinue = id => {
+    dispatch(countApproachesNumber(id));
     dispatch(updateTaskStatus({ id, status: 'Продовжено', dateKey: 'startDate' }));
+    dispatch(hideItemAnalytic());
   };
 
   const handleAnalytic = id => {
-    const task = tasks.find(task => task.id === id); // Знайдемо задачу
+    const task = tasks.find(task => task.id === id);
     dispatch(showItemAnalytic(task));
+
+    const footerTag = document.querySelector('footer');
+    if (footerTag) {
+      footerTag.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
   };
 
   switch (status) {
