@@ -5,14 +5,19 @@ import { FaPause } from 'react-icons/fa6';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { IoPlay } from 'react-icons/io5';
 import { FaRegChartBar } from 'react-icons/fa';
+import { MdEdit } from 'react-icons/md';
 import { selectTasks } from '../../redux/tasksSlice/selectors';
 import { countApproachesNumber, updateTaskStatus } from '../../redux/tasksSlice/slice';
 import { hideItemAnalytic, showItemAnalytic } from '../../redux/itemAnalyticSlice/slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { openModal } from '../../redux/modalSlice/slice';
 
 const ActionButtons = ({ id, status }) => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
+
+  const task = tasks.find(task => task.id === id);
+  const title = task ? task.title : '';
 
   const handleStart = () => {
     dispatch(updateTaskStatus({ id, status: 'В роботі', dateKey: 'startDate' }));
@@ -46,6 +51,15 @@ const ActionButtons = ({ id, status }) => {
     }
   };
 
+  const handeEdit = ({ id, title }) => {
+    dispatch(
+      openModal({
+        modalKey: 'isEditModalOpen',
+        taskData: { id, title },
+      })
+    );
+  };
+
   switch (status) {
     case 'Створено':
       return (
@@ -55,6 +69,9 @@ const ActionButtons = ({ id, status }) => {
           </Button>
           <Button onClick={() => handleDelete(id)}>
             <IoMdTrash />
+          </Button>
+          <Button onClick={() => handeEdit({ id, title })}>
+            <MdEdit />
           </Button>
         </>
       );

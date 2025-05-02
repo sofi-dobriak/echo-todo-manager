@@ -29,6 +29,15 @@
   border-right: 1px solid var(--table-border-color);
   background-color: var(--item-bg-color);
   height: 50px;
+  font-weight: 600;
+}
+
+.taskText {
+  label {
+    span {
+      font-weight: 400;
+    }
+  }
 }
 
 .taskText:last-child {

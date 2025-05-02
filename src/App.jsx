@@ -9,6 +9,8 @@ import TotalAnalyticTable from './components/TotalAnalyticTable/TotalAnalyticTab
 import { useSelector } from 'react-redux';
 import { selectFilteredTasks, selectTasks } from './redux/tasksSlice/selectors';
 import { selectIsVisibleItemAnalytic } from './redux/itemAnalyticSlice/selectors';
+import EditTaskModal from './components/EditTaskModal/EditTaskModal';
+import BackToTop from './components/BackToTop/BackToTop';
 
 function App() {
   const tasks = useSelector(selectTasks);
@@ -31,6 +33,8 @@ function App() {
 
         <AddTaskModal />
         <ConfirmDeleteModal />
+        <EditTaskModal />
+        <BackToTop />
       </Container>
     </>
   );

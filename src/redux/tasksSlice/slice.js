@@ -83,9 +83,11 @@ const slice = createSlice({
     },
 
     editTask: (state, action) => {
-      state.tasks = state.tasks.map(task =>
-        task.id === action.payload.id ? action.payload : task
-      );
+      if (action.payload && action.payload.id && action.payload.title) {
+        state.tasks = state.tasks.map(task =>
+          task.id === action.payload.id ? { ...task, title: action.payload.title } : task
+        );
+      }
     },
 
     deleteAllTasks: () => {

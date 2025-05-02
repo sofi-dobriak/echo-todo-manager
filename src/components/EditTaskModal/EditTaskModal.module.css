@@ -1,0 +1,69 @@
+.modalWindow {
+  padding: 40px;
+  padding-top: 80px;
+  width: 420px;
+  height: auto;
+}
+
+.cancelButton {
+  padding: 2px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    .cancelIcon {
+      color: var(--hover-cancel-icon-color);
+    }
+  }
+}
+
+.cancelIcon {
+  color: var(--cancel-icon-color);
+  font-size: 24px;
+  transition: all 0.15s ease-in-out;
+}
+
+.taskInput {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--input-bg-color);
+  padding: 12px;
+  margin-bottom: 6px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: var(--hover-border-color);
+  }
+}
+
+.symbolCount {
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.createButton {
+  display: block;
+  margin: 0 auto;
+  min-width: 210px;
+  height: 46px;
+  padding: 12px;
+}
+
+
+.error {
+  color: var(--error-color);
+  font-size: 12px;
+  position: absolute;
+}
