@@ -16,16 +16,22 @@ import { tasksReducer } from './tasksSlice/slice';
 import { modalsReducer } from './modalSlice/slice';
 import { itemAnalyticSliceReducer } from './itemAnalyticSlice/slice';
 
-const persistConfig = {
+const persistConfigTasks = {
   key: 'tasks',
+  version: 1,
+  storage,
+};
+
+const persistConfigFilters = {
+  key: 'filters',
   version: 1,
   storage,
 };
 
 export const store = configureStore({
   reducer: {
-    tasks: persistReducer(persistConfig, tasksReducer),
-    filters: filtersReducer,
+    tasks: persistReducer(persistConfigTasks, tasksReducer),
+    filters: persistReducer(persistConfigFilters, filtersReducer),
     modals: modalsReducer,
     itemAnalytic: itemAnalyticSliceReducer,
   },
