@@ -5,8 +5,13 @@ import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTasks } from '../../redux/tasksSlice/selectors';
 import { openModal } from '../../redux/modalSlice/slice';
+import { useMediaQuery } from 'react-responsive';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const Header = ({}) => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isTablet = useMediaQuery({ maxWidth: 1200 });
+
   const dispatch = useDispatch();
 
   const tasks = useSelector(selectTasks);
@@ -16,26 +21,32 @@ const Header = ({}) => {
     <header className={styles.header}>
       <div className={styles.headerContainer}>
         <CurrentDate />
-        <FilterBar />
 
-        <div className={styles.optionContainer}>
-          <Button
-            onClick={() => dispatch(openModal('isAddTaskModalOpen'))}
-            className={styles.taskButton}
-            disabled={hasTaskInProgess}
-          >
-            Нова задача
-          </Button>
-          <Button
-            onClick={() => dispatch(openModal('isConfirmDeleteModalOpen'))}
-            className={styles.deleteButton}
-          >
-            Видалити все
-          </Button>
-          <a href='#footer' className={styles.analitycsLink}>
-            Аналітика
-          </a>
-        </div>
+        {isMobile && <Button>Фільтри</Button>}
+        {!isMobile && <FilterBar />}
+
+        {isTablet && <BurgerMenu />}
+
+        {!isTablet && (
+          <div className={styles.optionContainer}>
+            <Button
+              onClick={() => dispatch(openModal('isAddTaskModalOpen'))}
+              className={styles.taskButton}
+              disabled={hasTaskInProgess}
+            >
+              Нова задача
+            </Button>
+            <Button
+              onClick={() => dispatch(openModal('isConfirmDeleteModalOpen'))}
+              className={styles.deleteButton}
+            >
+              Видалити все
+            </Button>
+            <a href='#footer' className={styles.analitycsLink}>
+              Аналітика
+            </a>
+          </div>
+        )}
       </div>
     </header>
   );
