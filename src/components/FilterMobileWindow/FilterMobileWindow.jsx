@@ -51,17 +51,17 @@ const FilterMobileWindow = () => {
           <IoCloseSharp className={styles.cancelIcon} />
         </Button>
 
-        <div>
+        <div className={styles.dateContainer}>
           <Text className={styles.title}>За назвою</Text>
           <MobileTitleFilter />
         </div>
 
-        <div>
+        <div className={styles.dateContainer}>
           <Text className={styles.title}>За статусом</Text>
           <MobileStatusFilter />
         </div>
 
-        <div>
+        <div className={styles.dateContainer}>
           <Text className={styles.title}>За датою</Text>
           <MobileDataFilter />
         </div>

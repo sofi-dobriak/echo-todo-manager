@@ -101,3 +101,8 @@
   min-width: 120px;
   height: 46px;
 }
+
+.dateContainer {
+  max-width: 270px;
+  width: 100%;
+}
