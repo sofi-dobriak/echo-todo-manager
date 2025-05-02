@@ -1,0 +1,105 @@
+.mobileWrapper {
+  position: fixed;
+  top: 4px;
+  right: 4px;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background-color: var(--modal-wrapper-bg);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateX(-100%);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.mobileWindow {
+  position: relative;
+  height: 40%;
+  max-width: 270px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: var(--modal-window-bg);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.cancelButton {
+  padding: 2px;
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    .cancelIcon {
+      color: var(--hover-cancel-icon-color);
+    }
+  }
+}
+
+.cancelIcon {
+  color: var(--cancel-icon-color);
+  font-size: 24px;
+  transition: all 0.15s ease-in-out;
+}
+
+
+.taskButton,
+.deleteButton {
+  min-width: 146px;
+  padding: 14px;
+}
+
+.taskButton:disabled {
+  background-color: var(--hover-disabled-bg-color);
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+    color: var(--button-text-color);
+    cursor: not-allowed;
+  }
+}
+
+.analitycsLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: var(--button-bg-color);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  color: var(--button-text-color);
+  min-width: 146px;
+  padding: 14px;
+
+  &:hover,
+  &:focus {
+    background-color: var(--hover-button-bg-color);
+    border-color: var(--hover-border-color);
+    color: var(--text-color);
+  }
+}

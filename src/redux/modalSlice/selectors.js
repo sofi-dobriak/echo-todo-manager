@@ -4,3 +4,4 @@ export const selectAddModalOpen = state => selectModals(state).isAddTaskModalOpe
 export const selectConfirmModalOpen = state => selectModals(state).isConfirmDeleteModalOpen;
 export const selectEditModalOpen = state => selectModals(state).isEditModalOpen;
 export const selectEditTaskData = state => selectModals(state).editTaskData;
+export const selectMobileWindow = state => selectModals(state).isMobileWindowOpen;
