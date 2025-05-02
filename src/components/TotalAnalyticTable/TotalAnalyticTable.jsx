@@ -1,9 +1,46 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './TotalAnalyticTable.module.css';
 import { selectTaskStatusCountsWithDateRange } from '../../redux/tasksSlice/selectors';
+import { useEffect, useState } from 'react';
+import { updateDataFilter } from '../../redux/filterSlice/slice';
+import { selectFiltersDate } from '../../redux/filterSlice/selectors';
 
 const TotalAnalyticTable = () => {
+  const dispatch = useDispatch();
   const taskStatusCounts = useSelector(selectTaskStatusCountsWithDateRange);
+  const dateRangeFilters = useSelector(selectFiltersDate);
+
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  const handleStartDateChange = e => {
+    const newStartDate = e.target.value;
+    setStartDate(newStartDate);
+
+    dispatch(
+      updateDataFilter({
+        start: newStartDate,
+        end: endDate,
+      })
+    );
+  };
+
+  const handleEndDateChange = e => {
+    const newEndDate = e.target.value;
+    setEndDate(newEndDate);
+
+    dispatch(
+      updateDataFilter({
+        start: startDate,
+        end: newEndDate,
+      })
+    );
+  };
+
+  useEffect(() => {
+    setStartDate(dateRangeFilters.start || '');
+    setEndDate(dateRangeFilters.end || '');
+  }, [dateRangeFilters.start, dateRangeFilters.end]);
 
   return (
     <footer className={styles.tableContainer} id='footer'>
@@ -24,7 +61,7 @@ const TotalAnalyticTable = () => {
             <td className={styles.taskText}>
               <label>
                 <span>Від</span>
-                <input type='date' />
+                <input type='date' value={startDate} onChange={handleStartDateChange} />
               </label>
             </td>
             <td className={styles.taskText} rowSpan={2}>
@@ -50,7 +87,7 @@ const TotalAnalyticTable = () => {
             <td className={`${styles.taskText} ${styles.second}`}>
               <label>
                 <span>До</span>
-                <input type='date' />
+                <input type='date' value={endDate} onChange={handleEndDateChange} />
               </label>
             </td>
           </tr>
