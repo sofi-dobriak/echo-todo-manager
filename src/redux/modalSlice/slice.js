@@ -5,6 +5,7 @@ const initialState = {
   isConfirmDeleteModalOpen: false,
   isEditModalOpen: false,
   isMobileWindowOpen: false,
+  isFilterMobileOpen: false,
   editTaskData: null,
 };
 

@@ -1,0 +1,31 @@
+.formButtonContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.dateForm {
+  display: flex;
+  max-width: 312px;
+  width: 100%;
+  gap: 8px;
+  font-size: inherit;
+}
+
+.label {
+  margin-bottom: 4px;
+}
+
+.dateInputField {
+  display: flex;
+  flex-direction: column;
+}
+
+.acceptButton {
+  padding: 2px;
+}
+
+.acceptIcon {
+  color: var(--icon-color);
+  font-size: 20px;
+}

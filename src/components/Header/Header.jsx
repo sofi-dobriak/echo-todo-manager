@@ -7,6 +7,7 @@ import { selectTasks } from '../../redux/tasksSlice/selectors';
 import { openModal } from '../../redux/modalSlice/slice';
 import { useMediaQuery } from 'react-responsive';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import MobileFilterBar from '../MobileFilterBar/MobileFilterBar';
 
 const Header = ({}) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -22,7 +23,7 @@ const Header = ({}) => {
       <div className={styles.headerContainer}>
         <CurrentDate />
 
-        {isMobile && <Button>Фільтри</Button>}
+        {isMobile && <MobileFilterBar />}
         {!isMobile && <FilterBar />}
 
         {isTablet && <BurgerMenu />}

@@ -1,0 +1,19 @@
+.filterContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cancelButton {
+  padding: 2px;
+}
+
+.cancelIcon {
+  color: var(--icon-color);
+  font-size: 20px;
+}
+
+.filterWindowButton {
+  min-width: 146px;
+  padding: 12px;
+}

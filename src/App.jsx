@@ -16,6 +16,7 @@ import EditTaskModal from './components/EditTaskModal/EditTaskModal';
 import BackToTop from './components/BackToTop/BackToTop';
 import { useEffect } from 'react';
 import OptionMobileWindow from './components/OptionMobileWindow/OptionMobileWindow';
+import FilterMobileWindow from './components/FilterMobileWindow/FilterMobileWindow';
 
 function App() {
   const tasks = useSelector(selectTasks);
@@ -53,8 +54,11 @@ function App() {
         <AddTaskModal />
         <ConfirmDeleteModal />
         <EditTaskModal />
+
         <BackToTop />
+
         <OptionMobileWindow />
+        <FilterMobileWindow />
       </Container>
     </>
   );
