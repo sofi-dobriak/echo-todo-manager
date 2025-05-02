@@ -8,14 +8,30 @@ import Text from './components/Text/Text';
 import TotalAnalyticTable from './components/TotalAnalyticTable/TotalAnalyticTable';
 import { useSelector } from 'react-redux';
 import { selectFilteredTasks, selectTasks } from './redux/tasksSlice/selectors';
-import { selectIsVisibleItemAnalytic } from './redux/itemAnalyticSlice/selectors';
+import {
+  selectCurrentTask,
+  selectIsVisibleItemAnalytic,
+} from './redux/itemAnalyticSlice/selectors';
 import EditTaskModal from './components/EditTaskModal/EditTaskModal';
 import BackToTop from './components/BackToTop/BackToTop';
+import { useEffect } from 'react';
 
 function App() {
   const tasks = useSelector(selectTasks);
   const filterTasks = useSelector(selectFilteredTasks);
   const isAnalyticVisible = useSelector(selectIsVisibleItemAnalytic);
+  const selectedTask = useSelector(selectCurrentTask);
+
+  useEffect(() => {
+    if (!selectedTask?.id) return;
+
+    setTimeout(() => {
+      const footerTag = document.querySelector('footer');
+      if (footerTag) {
+        footerTag.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  }, [selectedTask?.id]);
 
   return (
     <>
@@ -28,8 +44,10 @@ function App() {
           {filterTasks.length === 0 && tasks.length > 0 && <Text>Шо по фільтрам?</Text>}
         </main>
 
-        {isAnalyticVisible && <AnalyticItemTable />}
-        {!isAnalyticVisible && <TotalAnalyticTable />}
+        <footer>
+          {isAnalyticVisible && <AnalyticItemTable key={selectedTask?.id} />}
+          {!isAnalyticVisible && <TotalAnalyticTable />}
+        </footer>
 
         <AddTaskModal />
         <ConfirmDeleteModal />

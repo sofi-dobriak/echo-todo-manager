@@ -43,7 +43,7 @@ const TotalAnalyticTable = () => {
   }, [dateRangeFilters.start, dateRangeFilters.end]);
 
   return (
-    <footer className={styles.tableContainer} id='footer'>
+    <div className={styles.tableContainer} id='footer'>
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr className={styles.tr}>
@@ -93,7 +93,7 @@ const TotalAnalyticTable = () => {
           </tr>
         </tbody>
       </table>
-    </footer>
+    </div>
   );
 };
 

@@ -11,10 +11,12 @@ import { countApproachesNumber, updateTaskStatus } from '../../redux/tasksSlice/
 import { hideItemAnalytic, showItemAnalytic } from '../../redux/itemAnalyticSlice/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/modalSlice/slice';
+import { selectCurrentTask } from '../../redux/itemAnalyticSlice/selectors';
 
 const ActionButtons = ({ id, status }) => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
+  const selectedTask = useSelector(selectCurrentTask);
 
   const task = tasks.find(task => task.id === id);
   const title = task ? task.title : '';
@@ -42,13 +44,10 @@ const ActionButtons = ({ id, status }) => {
 
   const handleAnalytic = id => {
     const task = tasks.find(task => task.id === id);
-    dispatch(showItemAnalytic(task));
-
-    const footerTag = document.querySelector('footer');
-    if (footerTag) {
-      footerTag.scrollIntoView({ behavior: 'smooth' });
-      return;
-    }
+    dispatch(hideItemAnalytic());
+    setTimeout(() => {
+      dispatch(showItemAnalytic({ ...task }));
+    }, 0);
   };
 
   const handeEdit = ({ id, title }) => {

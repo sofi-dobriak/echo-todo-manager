@@ -10,7 +10,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     showItemAnalytic: (state, action) => {
-      state.isVisibleItemAnalityc = true;
+      state.isVisibleItemAnalytic = true;
       state.currentTask = action.payload;
     },
     hideItemAnalytic: () => {
