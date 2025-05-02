@@ -59,7 +59,7 @@ const TotalAnalyticTable = () => {
         <tbody>
           <tr className={styles.taskItem}>
             <td className={styles.taskText}>
-              <label>
+              <label className={styles.label}>
                 <span>Від</span>
                 <input type='date' value={startDate} onChange={handleStartDateChange} />
               </label>
@@ -85,7 +85,7 @@ const TotalAnalyticTable = () => {
           </tr>
           <tr className={styles.taskItem}>
             <td className={`${styles.taskText} ${styles.second}`}>
-              <label>
+              <label className={styles.label}>
                 <span>До</span>
                 <input type='date' value={endDate} onChange={handleEndDateChange} />
               </label>

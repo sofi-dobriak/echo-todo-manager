@@ -2,7 +2,7 @@
   border: 1px solid var(--table-border-color);
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 120px;
+  margin-bottom: 70px;
 }
 
 .table {
@@ -21,6 +21,17 @@
   font-weight: 600;
   background-color: var(--table-header-bg-color);
   color: var(--text-color);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 14px;
+
+  span {
+    margin-bottom: 2px;
+  }
 }
 
 .taskText {
