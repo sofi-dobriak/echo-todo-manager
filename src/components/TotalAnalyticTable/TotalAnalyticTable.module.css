@@ -57,6 +57,10 @@
   border-right: none;
 }
 
+.th:first-child {
+  width: 20%;
+}
+
 .taskItem .second {
   border-right: 1px solid var(--table-border-color);
 }

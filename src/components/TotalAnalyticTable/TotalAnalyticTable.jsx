@@ -57,7 +57,7 @@ const TotalAnalyticTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className={styles.taskItem}>
+          <tr className={`${styles.taskItem} ${styles.taskDate}`}>
             <td className={styles.taskText}>
               <label className={styles.label}>
                 <span>Від</span>
@@ -84,7 +84,7 @@ const TotalAnalyticTable = () => {
             </td>
           </tr>
           <tr className={styles.taskItem}>
-            <td className={`${styles.taskText} ${styles.second}`}>
+            <td className={`${styles.taskText} ${styles.second} ${styles.taskDate}`}>
               <label className={styles.label}>
                 <span>До</span>
                 <input type='date' value={endDate} onChange={handleEndDateChange} />
