@@ -7,7 +7,7 @@
 .dateForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   max-width: 312px;
   width: 100%;
   gap: 8px;
@@ -21,6 +21,7 @@
 .dateInputField {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .acceptButton {
