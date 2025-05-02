@@ -31,8 +31,8 @@
   padding-top: 60px;
   position: relative;
   height: auto;
-  max-width: 270px;
   width: 100%;
+  max-width: 300px;
   border-radius: 4px;
   background-color: var(--modal-window-bg);
 

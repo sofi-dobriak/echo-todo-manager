@@ -2,8 +2,6 @@ import { useDispatch } from 'react-redux';
 import styles from './MobileDataFilter.module.css';
 import { useState } from 'react';
 import { updateDataFilter } from '../../redux/filterSlice/slice';
-import Button from '../Button/Button';
-import { FaCheck } from 'react-icons/fa6';
 
 const MobileDataFilter = () => {
   const dispatch = useDispatch();

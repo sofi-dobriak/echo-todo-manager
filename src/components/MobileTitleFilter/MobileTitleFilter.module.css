@@ -1,14 +1,14 @@
 .formButtonContainer {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 
 .textInput {
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  width: 100%;
-  max-width: 270px;
+  width: 260px;
   padding: 8px;
   transition: all .15s ease-in-out;
 
