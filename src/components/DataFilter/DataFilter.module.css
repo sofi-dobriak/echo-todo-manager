@@ -22,11 +22,11 @@
   flex-direction: column;
 }
 
-.acceptButton {
+.resetButton {
   padding: 2px;
 }
 
-.acceptIcon {
+.resettIcon {
   color: var(--icon-color);
   font-size: 20px;
 }

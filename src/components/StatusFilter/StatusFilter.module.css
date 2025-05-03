@@ -53,3 +53,12 @@
   border-color: var(--hover-border-color);
   background-color: var(--hover-bg-color);
 }
+
+.resetButton {
+  padding: 2px;
+}
+
+.resettIcon {
+  color: var(--icon-color);
+  font-size: 20px;
+}

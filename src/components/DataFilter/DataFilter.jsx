@@ -1,19 +1,50 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import styles from './DataFilter.module.css';
-import { FaCheck } from 'react-icons/fa6';
-import { useDispatch } from 'react-redux';
-import { updateDataFilter } from '../../redux/filterSlice/slice';
+import { IoCloseSharp } from 'react-icons/io5';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetDataFilter, updateDataFilter } from '../../redux/filterSlice/slice';
+import { selectFiltersDate } from '../../redux/filterSlice/selectors';
 
 const DataFilter = () => {
   const dispatch = useDispatch();
+  const dateRage = useSelector(selectFiltersDate);
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const handleDateFilter = () => {
-    dispatch(updateDataFilter({ start: startDate, end: endDate }));
+  const handleStartDateChange = e => {
+    const newStartDate = e.target.value;
+    setStartDate(newStartDate);
+
+    dispatch(
+      updateDataFilter({
+        start: newStartDate,
+        end: endDate,
+      })
+    );
   };
+
+  const handleEndDateChange = e => {
+    const newEndDate = e.target.value;
+    setEndDate(newEndDate);
+
+    dispatch(
+      updateDataFilter({
+        start: startDate,
+        end: newEndDate,
+      })
+    );
+  };
+
+  const handleResetDateFilter = () => {
+    dispatch(resetDataFilter());
+  };
+
+  useEffect(() => {
+    setStartDate(dateRage?.start || '');
+    setEndDate(dateRage?.end || '');
+  }, [dateRage?.start, dateRage?.end]);
 
   return (
     <div className={styles.formButtonContainer}>
@@ -27,7 +58,7 @@ const DataFilter = () => {
             id='start-date'
             className={styles.dateInput}
             value={startDate}
-            onChange={e => setStartDate(e.target.value)}
+            onChange={handleStartDateChange}
           />
         </div>
 
@@ -40,12 +71,12 @@ const DataFilter = () => {
             id='end-date'
             className={styles.dateInput}
             value={endDate}
-            onChange={e => setEndDate(e.target.value)}
+            onChange={handleEndDateChange}
           />
         </div>
       </form>
-      <Button onClick={handleDateFilter} className={styles.acceptButton} type='button'>
-        <FaCheck className={styles.acceptIcon} />
+      <Button onClick={handleResetDateFilter} className={styles.resetButton} type='button'>
+        <IoCloseSharp className={styles.resettIcon} />
       </Button>
     </div>
   );

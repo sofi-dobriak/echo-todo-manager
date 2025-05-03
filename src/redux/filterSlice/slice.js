@@ -13,12 +13,21 @@ const slice = createSlice({
     updateStatusFilter: (state, action) => {
       state.status = action.payload;
     },
+    resetStatusFilter: state => {
+      state.status = '';
+    },
     updateDataFilter: (state, action) => {
       const { start, end } = action.payload;
       state.dateRange = { start, end };
     },
+    resetDataFilter: state => {
+      state.dateRange = { start: '', end: '' };
+    },
     updateTitleFilter: (state, action) => {
       state.title = action.payload;
+    },
+    resetTitleFilter: state => {
+      state.title = '';
     },
     resetFilters: () => {
       return initialState;
@@ -26,7 +35,14 @@ const slice = createSlice({
   },
 });
 
-export const { updateStatusFilter, updateDataFilter, updateTitleFilter, resetFilters } =
-  slice.actions;
+export const {
+  updateStatusFilter,
+  resetStatusFilter,
+  updateDataFilter,
+  resetDataFilter,
+  updateTitleFilter,
+  resetTitleFilter,
+  resetFilters,
+} = slice.actions;
 
 export const filtersReducer = slice.reducer;

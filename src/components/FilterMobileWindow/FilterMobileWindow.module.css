@@ -30,7 +30,8 @@
   padding: 20px;
   padding-top: 60px;
   position: relative;
-  height: auto;
+  max-height: 90vh;
+  overflow-y: auto;
   width: 100%;
   max-width: 300px;
   border-radius: 4px;
@@ -41,7 +42,7 @@
   justify-content: center;
   align-items: center;
   gap: 50px;
-  overflow-y: auto;
+
 }
 
 .cancelButton {

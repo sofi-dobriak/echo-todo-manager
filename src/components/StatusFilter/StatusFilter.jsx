@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './StatusFilter.module.css';
 import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
-import { updateStatusFilter } from '../../redux/filterSlice/slice';
+import { resetStatusFilter, updateStatusFilter } from '../../redux/filterSlice/slice';
+import { IoCloseSharp } from 'react-icons/io5';
+import Button from '../Button/Button';
 
 const StatusFilter = () => {
   const dispatch = useDispatch();
@@ -9,6 +11,10 @@ const StatusFilter = () => {
 
   const handleStatusChange = e => {
     dispatch(updateStatusFilter(e.target.value));
+  };
+
+  const handleResetFilter = () => {
+    dispatch(resetStatusFilter());
   };
 
   return (
@@ -79,6 +85,9 @@ const StatusFilter = () => {
           <span className={styles.name}>Видалено</span>
         </label>
       </form>
+      <Button onClick={handleResetFilter} className={styles.resetButton} type='button'>
+        <IoCloseSharp className={styles.resettIcon} />
+      </Button>
     </div>
   );
 };

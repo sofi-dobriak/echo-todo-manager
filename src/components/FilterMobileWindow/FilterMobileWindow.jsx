@@ -74,7 +74,7 @@ const FilterMobileWindow = () => {
             Застосувати
           </Button>
           <Button onClick={handleResetFilters} className={styles.filterMobileButton}>
-            Скинути
+            Скинути всі
           </Button>
         </div>
       </div>
