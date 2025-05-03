@@ -2,6 +2,22 @@
 @import url(./modern-normalize.css);
 
 
+@font-face {
+  font-display: swap;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/montserrat-v29-cyrillic-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./assets/fonts/montserrat-v29-cyrillic-600.woff2') format('woff2');
+}
+
 :root {
   --font-family: "Montserrat", sans-serif;
   --font-size: 16px;
@@ -47,4 +63,12 @@ body {
   font-size: var(--font-size);
   color: var(--text-color);
   font-size: 14px;
+}
+
+input,
+th,
+tr,
+td,
+span {
+  font-family: var(--font-family);
 }
