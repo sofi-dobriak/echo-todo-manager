@@ -1,6 +1,8 @@
 .modalWindow {
   padding: 30px;
   padding-top: 50px;
+  width: 350px;
+  height: auto;
 }
 
 .cancelButton {
@@ -40,4 +42,33 @@
   min-width: 210px;
   height: 46px;
   padding: 12px;
+}
+
+@media (min-width: 375px) and (max-width: 768px) {
+  .modalWindow {
+    width: 320px;
+  }
+
+  .confirmTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 375px) {
+  .modalWindow {
+    width: 290px;
+    padding: 20px;
+    padding-top: 40px;
+  }
+
+  .confirmTitle {
+    font-size: 18px;
+  }
+
+  .cancelButton {
+    padding: 2px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
 }
