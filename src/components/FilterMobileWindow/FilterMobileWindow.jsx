@@ -8,7 +8,6 @@ import Text from '../Text/Text';
 import Button from '../Button/Button';
 import { closeModal } from '../../redux/modalSlice/slice';
 import { useEffect } from 'react';
-import { IoCloseSharp } from 'react-icons/io5';
 import { resetFilters } from '../../redux/filterSlice/slice';
 
 const FilterMobileWindow = () => {
@@ -44,13 +43,6 @@ const FilterMobileWindow = () => {
       className={`${styles.filterWrapper} ${isMobileWindowOpen ? styles.visible : ''}`}
     >
       <div className={styles.filterWindow}>
-        <Button
-          onClick={() => dispatch(closeModal('isFilterMobileOpen'))}
-          className={styles.cancelButton}
-        >
-          <IoCloseSharp className={styles.cancelIcon} />
-        </Button>
-
         <div className={styles.dateContainer}>
           <Text className={styles.title}>За назвою</Text>
           <MobileTitleFilter />

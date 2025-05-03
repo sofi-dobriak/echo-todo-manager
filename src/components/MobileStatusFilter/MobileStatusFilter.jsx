@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './MobileStatusFilter.module.css';
 import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
-import { updateStatusFilter } from '../../redux/filterSlice/slice';
+import { resetStatusFilter, updateStatusFilter } from '../../redux/filterSlice/slice';
+import Button from '../Button/Button';
 
 const MobileStatusFilter = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,11 @@ const MobileStatusFilter = () => {
   const handleStatusChange = e => {
     dispatch(updateStatusFilter(e.target.value));
   };
+
+  const handleResetStatusFilter = () => {
+    dispatch(resetStatusFilter());
+  };
+
   return (
     <div className={styles.formButtonContainer}>
       <div className={styles.radioInputs}>
@@ -78,6 +84,9 @@ const MobileStatusFilter = () => {
           <span className={styles.name}>Видалено</span>
         </label>
       </div>
+      <Button onClick={handleResetStatusFilter} className={styles.resetStatusFilterButton}>
+        Скинути
+      </Button>
     </div>
   );
 };

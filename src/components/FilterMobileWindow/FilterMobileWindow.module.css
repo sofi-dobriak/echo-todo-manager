@@ -28,7 +28,6 @@
 
 .filterWindow {
   padding: 20px;
-  padding-top: 60px;
   position: relative;
   max-height: 90vh;
   overflow-y: auto;
@@ -41,7 +40,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
 
 }
 

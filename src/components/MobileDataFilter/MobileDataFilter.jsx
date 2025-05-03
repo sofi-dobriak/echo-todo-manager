@@ -1,16 +1,48 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './MobileDataFilter.module.css';
-import { useState } from 'react';
-import { updateDataFilter } from '../../redux/filterSlice/slice';
+import { useEffect, useState } from 'react';
+import { resetDataFilter, updateDataFilter } from '../../redux/filterSlice/slice';
+import Button from '../Button/Button';
+import { selectFiltersDate } from '../../redux/filterSlice/selectors';
 
 const MobileDataFilter = () => {
   const dispatch = useDispatch();
+  const dateRage = useSelector(selectFiltersDate);
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const handleDateFilter = () => {
-    dispatch(updateDataFilter({ start: startDate, end: endDate }));
+  const handleStartDateChange = e => {
+    const newStart = e.target.value;
+    setStartDate(newStart);
+
+    dispatch(
+      updateDataFilter({
+        start: newStart,
+        end: endDate,
+      })
+    );
+  };
+
+  const handleEndDateChange = e => {
+    const newEnd = e.target.value;
+    setEndDate(newEnd);
+
+    dispatch(
+      updateDataFilter({
+        start: startDate,
+        end: newEnd,
+      })
+    );
+  };
+
+  useEffect(() => {
+    setStartDate(dateRage?.start || '');
+    setEndDate(dateRage?.end || '');
+  }, [dateRage?.start, dateRage?.end]);
+
+  const handleResetDateFilter = () => {
+    dispatch(resetDataFilter());
   };
 
   return (
@@ -25,7 +57,7 @@ const MobileDataFilter = () => {
             id='start-date'
             className={styles.dateInput}
             value={startDate}
-            onChange={e => setStartDate(e.target.value)}
+            onChange={handleStartDateChange}
           />
         </div>
 
@@ -38,10 +70,13 @@ const MobileDataFilter = () => {
             id='end-date'
             className={styles.dateInput}
             value={endDate}
-            onChange={e => setEndDate(e.target.value)}
+            onChange={handleEndDateChange}
           />
         </div>
       </form>
+      <Button onClick={handleResetDateFilter} className={styles.resetDataFilterButton}>
+        Скинути
+      </Button>
     </div>
   );
 };

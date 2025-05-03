@@ -1,6 +1,6 @@
 .formButtonContainer {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   gap: 8px;
 }
 
@@ -36,4 +36,8 @@
 .acceptIcon {
   color: var(--icon-color);
   font-size: 20px;
+}
+
+.resetDataFilterButton {
+  padding: 10px 0;
 }
