@@ -9,14 +9,13 @@ import { useMediaQuery } from 'react-responsive';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import MobileFilterBar from '../MobileFilterBar/MobileFilterBar';
 
-const Header = ({}) => {
+const Header = ({ clickedId, hasTaskInProgess }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const isTablet = useMediaQuery({ maxWidth: 1200 });
 
   const dispatch = useDispatch();
 
   const tasks = useSelector(selectTasks);
-  const hasTaskInProgess = tasks.some(task => task.status === 'В роботі');
 
   return (
     <header className={styles.header}>
@@ -33,7 +32,7 @@ const Header = ({}) => {
             <Button
               onClick={() => dispatch(openModal('isAddTaskModalOpen'))}
               className={styles.taskButton}
-              disabled={hasTaskInProgess}
+              disabled={clickedId !== null || hasTaskInProgess}
             >
               Нова задача
             </Button>

@@ -12,11 +12,11 @@ import { hideItemAnalytic, showItemAnalytic } from '../../redux/itemAnalyticSlic
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/modalSlice/slice';
 import { selectCurrentTask } from '../../redux/itemAnalyticSlice/selectors';
+import styles from './ActionButtons.module.css';
 
-const ActionButtons = ({ id, status }) => {
+const ActionButtons = ({ id, status, hasTaskInProgess }) => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
-  const selectedTask = useSelector(selectCurrentTask);
 
   const task = tasks.find(task => task.id === id);
   const title = task ? task.title : '';
@@ -63,13 +63,25 @@ const ActionButtons = ({ id, status }) => {
     case 'Створено':
       return (
         <>
-          <Button onClick={() => handleStart(id)}>
+          <Button
+            onClick={() => handleStart(id)}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
             <LuTimer />
           </Button>
-          <Button onClick={() => handleDelete(id)}>
+          <Button
+            onClick={() => handleDelete(id)}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
             <IoMdTrash />
           </Button>
-          <Button onClick={() => handeEdit({ id, title })}>
+          <Button
+            onClick={() => handeEdit({ id, title })}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
             <MdEdit />
           </Button>
         </>
@@ -90,13 +102,25 @@ const ActionButtons = ({ id, status }) => {
     case 'Зупинено':
       return (
         <>
-          <Button onClick={() => handleContinue(id)}>
+          <Button
+            onClick={() => handleContinue(id)}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
             <IoPlay />
           </Button>
-          <Button onClick={() => handleDelete(id)}>
+          <Button
+            onClick={() => handleDelete(id)}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
             <IoMdTrash />
           </Button>
-          <Button onClick={() => handleAnalytic(id)}>
+          <Button
+            onClick={() => handleAnalytic(id)}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
             <FaRegChartBar />
           </Button>
         </>
@@ -116,7 +140,11 @@ const ActionButtons = ({ id, status }) => {
 
     case 'Завершено':
       return (
-        <Button onClick={() => handleAnalytic(id)}>
+        <Button
+          onClick={() => handleAnalytic(id)}
+          disabled={hasTaskInProgess}
+          className={styles.disabledButton}
+        >
           <FaRegChartBar />
         </Button>
       );

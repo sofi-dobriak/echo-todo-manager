@@ -14,6 +14,11 @@ const MobileDataFilter = () => {
 
   const handleStartDateChange = e => {
     const newStart = e.target.value;
+
+    if (endDate && new Date(newStartDate) > new Date(endDate)) {
+      return alert('Некоректний діапазон');
+    }
+
     setStartDate(newStart);
 
     dispatch(
@@ -26,6 +31,11 @@ const MobileDataFilter = () => {
 
   const handleEndDateChange = e => {
     const newEnd = e.target.value;
+
+    if (startDate && new Date(newEndDate) < new Date(startDate)) {
+      return alert('Некоректний діапазон');
+    }
+
     setEndDate(newEnd);
 
     dispatch(

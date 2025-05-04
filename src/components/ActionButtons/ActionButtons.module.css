@@ -1,0 +1,14 @@
+.disabledButton:disabled {
+  background-color: var(--hover-disabled-bg-color);
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+    color: var(--button-text-color);
+    cursor: not-allowed;
+  }
+
+  svg {
+    color: var(--icon-color);
+  }
+}

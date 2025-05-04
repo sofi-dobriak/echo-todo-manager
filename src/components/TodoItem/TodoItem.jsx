@@ -12,12 +12,15 @@ const TodoItem = ({
   completeDate,
   clickedId,
   setClickedId,
+  hasTaskInProgess,
 }) => {
   return (
     <tr
       key={id}
       onClick={() => setClickedId(clickedId === id ? null : id)}
-      className={`${styles.taskItem} ${status === 'Видалено' ? styles.deletedTask : ''}`}
+      className={`${styles.taskItem} ${status === 'Видалено' ? styles.deletedTask : ''} ${
+        status === 'В роботі' || status === 'Продовжено' ? styles.inProgress : ''
+      }`}
     >
       <td className={styles.taskText}>{formattedDateTime(createdDate)}</td>
       <td className={styles.taskText}>{startDate ? formattedDateTime(startDate) : ''}</td>
@@ -27,7 +30,7 @@ const TodoItem = ({
         {title}
         {clickedId === id && status !== 'Видалено' && (
           <div className={styles.contextMenu}>
-            <ActionButtons id={id} status={status} />
+            <ActionButtons id={id} status={status} hasTaskInProgess={hasTaskInProgess} />
           </div>
         )}
       </td>

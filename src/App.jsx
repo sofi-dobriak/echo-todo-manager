@@ -14,7 +14,7 @@ import {
 } from './redux/itemAnalyticSlice/selectors';
 import EditTaskModal from './components/EditTaskModal/EditTaskModal';
 import BackToTop from './components/BackToTop/BackToTop';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import OptionMobileWindow from './components/OptionMobileWindow/OptionMobileWindow';
 import FilterMobileWindow from './components/FilterMobileWindow/FilterMobileWindow';
 
@@ -35,13 +35,23 @@ function App() {
     }, 100);
   }, [selectedTask?.id]);
 
+  const [clickedId, setClickedId] = useState(null);
+
+  const hasTaskInProgess = tasks.some(
+    task => task.status === 'В роботі' || task.status === 'Продовжено'
+  );
+
   return (
     <>
       <Container>
-        <Header />
+        <Header clickedId={clickedId} hasTaskInProgess={hasTaskInProgess} />
 
         <main>
-          <TodoListTable />
+          <TodoListTable
+            clickedId={clickedId}
+            setClickedId={setClickedId}
+            hasTaskInProgess={hasTaskInProgess}
+          />
           {tasks.length === 0 && <Text>Попрацюємо?</Text>}
           {filterTasks.length === 0 && tasks.length > 0 && <Text>Шо по фільтрам?</Text>}
         </main>

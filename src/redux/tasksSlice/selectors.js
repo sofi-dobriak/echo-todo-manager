@@ -8,31 +8,36 @@ export const selectFilteredTasks = createSelector(
   (tasks, filters) => {
     const { status, dateRange, title } = filters;
 
-    return tasks.filter(task => {
-      if (status && task.status.toLowerCase() !== status.toLowerCase()) {
+    const startDate = dateRange.start ? new Date(dateRange.start) : null;
+    const endDate = dateRange.end ? new Date(dateRange.end) : null;
+
+    if (startDate) startDate.setHours(0, 0, 0, 0);
+    if (endDate) endDate.setHours(23, 59, 59, 999);
+
+    const filteredTasks = tasks.filter(task => {
+      const taskStatus = task.status.toLowerCase();
+      const taskTitle = task.title.toLowerCase();
+      const taskCreatedDate = new Date(task.createdDate);
+
+      if (status && taskStatus !== status.toLowerCase()) {
         return false;
       }
 
-      if (dateRange.start && dateRange.end) {
-        const createDate = new Date(task.createdDate);
-
-        const startDate = new Date(dateRange.start);
-        startDate.setHours(0, 0, 0, 0);
-
-        const endDate = new Date(dateRange.end);
-        endDate.setHours(23, 59, 59, 999);
-
-        if (createDate < startDate || createDate > endDate) {
+      if (startDate && endDate) {
+        if (endDate < startDate) return false;
+        if (taskCreatedDate < startDate || taskCreatedDate > endDate) {
           return false;
         }
       }
 
-      if (title && !task.title.toLowerCase().includes(title.toLowerCase())) {
+      if (title && !taskTitle.includes(title.toLowerCase())) {
         return false;
       }
 
       return true;
     });
+
+    return filteredTasks.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
   }
 );
 

@@ -15,6 +15,11 @@ const TotalAnalyticTable = () => {
 
   const handleStartDateChange = e => {
     const newStartDate = e.target.value;
+
+    if (endDate && new Date(newStartDate) > new Date(endDate)) {
+      return alert('Некоректний діапазон');
+    }
+
     setStartDate(newStartDate);
 
     dispatch(
@@ -27,6 +32,11 @@ const TotalAnalyticTable = () => {
 
   const handleEndDateChange = e => {
     const newEndDate = e.target.value;
+
+    if (startDate && new Date(newEndDate) < new Date(startDate)) {
+      return alert('Некоректний діапазон');
+    }
+
     setEndDate(newEndDate);
 
     dispatch(
