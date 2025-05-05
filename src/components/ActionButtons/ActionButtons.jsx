@@ -14,12 +14,16 @@ import { openModal } from '../../redux/modalSlice/slice';
 import { selectCurrentTask } from '../../redux/itemAnalyticSlice/selectors';
 import styles from './ActionButtons.module.css';
 
-const ActionButtons = ({ id, status, hasTaskInProgess }) => {
+const ActionButtons = ({ id, status }) => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
 
   const task = tasks.find(task => task.id === id);
   const title = task ? task.title : '';
+
+  const hasTaskInProgess = tasks.some(
+    task => task.status === 'В роботі' || task.status === 'Продовжено'
+  );
 
   const handleStart = () => {
     dispatch(updateTaskStatus({ id, status: 'В роботі', dateKey: 'startDate' }));
@@ -122,6 +126,13 @@ const ActionButtons = ({ id, status, hasTaskInProgess }) => {
             className={styles.disabledButton}
           >
             <FaRegChartBar />
+          </Button>
+          <Button
+            onClick={() => handeEdit({ id, title })}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
+            <MdEdit />
           </Button>
         </>
       );

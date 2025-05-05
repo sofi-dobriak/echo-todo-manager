@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { resetDataFilter, updateDataFilter } from '../../redux/filterSlice/slice';
 import Button from '../Button/Button';
 import { selectFiltersDate } from '../../redux/filterSlice/selectors';
+import { closeModal, openModal } from '../../redux/modalSlice/slice';
 
 const MobileDataFilter = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ const MobileDataFilter = () => {
     const newStart = e.target.value;
 
     if (endDate && new Date(newStartDate) > new Date(endDate)) {
-      return alert('Некоректний діапазон');
+      dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
+      setTimeout(() => {
+        dispatch(closeModal('isErrorMessageModalOpen'));
+      }, 2500);
+      return;
     }
 
     setStartDate(newStart);
@@ -32,8 +37,12 @@ const MobileDataFilter = () => {
   const handleEndDateChange = e => {
     const newEnd = e.target.value;
 
-    if (startDate && new Date(newEndDate) < new Date(startDate)) {
-      return alert('Некоректний діапазон');
+    if (startDate && new Date(newEnd) < new Date(startDate)) {
+      dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
+      setTimeout(() => {
+        dispatch(closeModal('isErrorMessageModalOpen'));
+      }, 2500);
+      return;
     }
 
     setEndDate(newEnd);

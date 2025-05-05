@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
 import TodoItem from '../TodoItem/TodoItem';
 
-const TodoListTable = ({ clickedId, setClickedId, hasTaskInProgess }) => {
+const TodoListTable = ({ clickedId, setClickedId }) => {
   const tasks = useSelector(selectFilteredTasks);
 
   return (
@@ -32,7 +32,6 @@ const TodoListTable = ({ clickedId, setClickedId, hasTaskInProgess }) => {
               completeDate={completeDate}
               clickedId={clickedId}
               setClickedId={setClickedId}
-              hasTaskInProgess={hasTaskInProgess}
             />
           ))}
         </tbody>

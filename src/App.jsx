@@ -17,8 +17,11 @@ import BackToTop from './components/BackToTop/BackToTop';
 import { useEffect, useState } from 'react';
 import OptionMobileWindow from './components/OptionMobileWindow/OptionMobileWindow';
 import FilterMobileWindow from './components/FilterMobileWindow/FilterMobileWindow';
+import ErrorDateRangeMessage from './components/ErrorDateRangeMessage/ErrorDateRangeMessage';
 
 function App() {
+  const [clickedId, setClickedId] = useState(null);
+
   const tasks = useSelector(selectTasks);
   const filterTasks = useSelector(selectFilteredTasks);
   const isAnalyticVisible = useSelector(selectIsVisibleItemAnalytic);
@@ -35,23 +38,13 @@ function App() {
     }, 100);
   }, [selectedTask?.id]);
 
-  const [clickedId, setClickedId] = useState(null);
-
-  const hasTaskInProgess = tasks.some(
-    task => task.status === 'В роботі' || task.status === 'Продовжено'
-  );
-
   return (
     <>
       <Container>
-        <Header clickedId={clickedId} hasTaskInProgess={hasTaskInProgess} />
+        <Header clickedId={clickedId} />
 
         <main>
-          <TodoListTable
-            clickedId={clickedId}
-            setClickedId={setClickedId}
-            hasTaskInProgess={hasTaskInProgess}
-          />
+          <TodoListTable clickedId={clickedId} setClickedId={setClickedId} />
           {tasks.length === 0 && <Text>Попрацюємо?</Text>}
           {filterTasks.length === 0 && tasks.length > 0 && <Text>Шо по фільтрам?</Text>}
         </main>
@@ -64,10 +57,11 @@ function App() {
         <AddTaskModal />
         <ConfirmDeleteModal />
         <EditTaskModal />
+        <ErrorDateRangeMessage />
 
         <BackToTop />
 
-        <OptionMobileWindow />
+        <OptionMobileWindow clickedId={clickedId} />
         <FilterMobileWindow />
       </Container>
     </>

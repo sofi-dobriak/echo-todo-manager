@@ -7,11 +7,14 @@ import { closeModal, openModal } from '../../redux/modalSlice/slice';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useEffect } from 'react';
 
-const OptionMobileWindow = () => {
+const OptionMobileWindow = ({ clickedId }) => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
-  const hasTaskInProgess = tasks.some(task => task.status === 'В роботі');
   const isMobileWindowOpen = useSelector(selectMobileWindow);
+
+  const hasTaskInProgess = tasks.some(
+    task => task.status === 'В роботі' || task.status === 'Продовжено'
+  );
 
   const handleNewTask = () => {
     dispatch(openModal('isAddTaskModalOpen'));
@@ -54,7 +57,11 @@ const OptionMobileWindow = () => {
           <IoCloseSharp className={styles.cancelIcon} />
         </Button>
 
-        <Button onClick={handleNewTask} className={styles.taskButton} disabled={hasTaskInProgess}>
+        <Button
+          onClick={handleNewTask}
+          className={styles.taskButton}
+          disabled={clickedId !== null || hasTaskInProgess}
+        >
           Нова задача
         </Button>
         <Button onClick={handleDeleteAllTasks} className={styles.deleteButton}>

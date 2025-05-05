@@ -4,6 +4,7 @@ import { selectTaskStatusCountsWithDateRange } from '../../redux/tasksSlice/sele
 import { useEffect, useState } from 'react';
 import { updateDataFilter } from '../../redux/filterSlice/slice';
 import { selectFiltersDate } from '../../redux/filterSlice/selectors';
+import { closeModal, openModal } from '../../redux/modalSlice/slice';
 
 const TotalAnalyticTable = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,11 @@ const TotalAnalyticTable = () => {
     const newStartDate = e.target.value;
 
     if (endDate && new Date(newStartDate) > new Date(endDate)) {
-      return alert('Некоректний діапазон');
+      dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
+      setTimeout(() => {
+        dispatch(closeModal('isErrorMessageModalOpen'));
+      }, 2500);
+      return;
     }
 
     setStartDate(newStartDate);
@@ -34,7 +39,11 @@ const TotalAnalyticTable = () => {
     const newEndDate = e.target.value;
 
     if (startDate && new Date(newEndDate) < new Date(startDate)) {
-      return alert('Некоректний діапазон');
+      dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
+      setTimeout(() => {
+        dispatch(closeModal('isErrorMessageModalOpen'));
+      }, 2500);
+      return;
     }
 
     setEndDate(newEndDate);

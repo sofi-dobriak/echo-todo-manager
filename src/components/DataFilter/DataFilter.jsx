@@ -5,6 +5,7 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetDataFilter, updateDataFilter } from '../../redux/filterSlice/slice';
 import { selectFiltersDate } from '../../redux/filterSlice/selectors';
+import { closeModal, openModal } from '../../redux/modalSlice/slice';
 
 const DataFilter = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,11 @@ const DataFilter = () => {
     const newStartDate = e.target.value;
 
     if (endDate && new Date(newStartDate) > new Date(endDate)) {
-      return alert('Некоректний діапазон');
+      dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
+      setTimeout(() => {
+        dispatch(closeModal('isErrorMessageModalOpen'));
+      }, 2500);
+      return;
     }
 
     setStartDate(newStartDate);
@@ -34,7 +39,11 @@ const DataFilter = () => {
     const newEndDate = e.target.value;
 
     if (startDate && new Date(newEndDate) < new Date(startDate)) {
-      return alert('Некоректний діапазон');
+      dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
+      setTimeout(() => {
+        dispatch(closeModal('isErrorMessageModalOpen'));
+      }, 2500);
+      return;
     }
 
     setEndDate(newEndDate);

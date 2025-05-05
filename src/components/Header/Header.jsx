@@ -9,13 +9,16 @@ import { useMediaQuery } from 'react-responsive';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import MobileFilterBar from '../MobileFilterBar/MobileFilterBar';
 
-const Header = ({ clickedId, hasTaskInProgess }) => {
+const Header = ({ clickedId }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const isTablet = useMediaQuery({ maxWidth: 1200 });
 
   const dispatch = useDispatch();
 
   const tasks = useSelector(selectTasks);
+  const hasTaskInProgess = tasks.some(
+    task => task.status === 'В роботі' || task.status === 'Продовжено'
+  );
 
   return (
     <header className={styles.header}>

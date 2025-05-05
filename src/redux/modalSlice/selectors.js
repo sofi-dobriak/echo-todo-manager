@@ -6,3 +6,4 @@ export const selectEditModalOpen = state => selectModals(state).isEditModalOpen;
 export const selectEditTaskData = state => selectModals(state).editTaskData;
 export const selectMobileWindow = state => selectModals(state).isMobileWindowOpen;
 export const selectFilterMobileWindow = state => selectModals(state).isFilterMobileOpen;
+export const selectErrorMessageModalWindow = state => selectModals(state).isErrorMessageModalOpen;

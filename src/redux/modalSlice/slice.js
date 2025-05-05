@@ -4,6 +4,7 @@ const initialState = {
   isAddTaskModalOpen: false,
   isConfirmDeleteModalOpen: false,
   isEditModalOpen: false,
+  isErrorMessageModalOpen: false,
   isMobileWindowOpen: false,
   isFilterMobileOpen: false,
   editTaskData: null,

@@ -12,7 +12,6 @@ const TodoItem = ({
   completeDate,
   clickedId,
   setClickedId,
-  hasTaskInProgess,
 }) => {
   return (
     <tr
@@ -30,7 +29,7 @@ const TodoItem = ({
         {title}
         {clickedId === id && status !== 'Видалено' && (
           <div className={styles.contextMenu}>
-            <ActionButtons id={id} status={status} hasTaskInProgess={hasTaskInProgess} />
+            <ActionButtons id={id} status={status} />
           </div>
         )}
       </td>
