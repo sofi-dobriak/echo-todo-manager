@@ -2,7 +2,7 @@
   position: fixed;
   top: 10px;
   right: 10px;
-  width: 300px;
+  width: 260px;
   height: auto;
   padding: 12px;
   background-color: #C87D7D;
@@ -17,13 +17,10 @@
   transform: translateX(0%);
 }
 
-.errorTitle {
-  font-size: 18px;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: aliceblue;
-}
-
 .errorDescription {
+  font-size: 16px;
   color: aliceblue;
+  line-height: 1.5;
+  max-width: 200px;
+  margin: 0 auto;
 }

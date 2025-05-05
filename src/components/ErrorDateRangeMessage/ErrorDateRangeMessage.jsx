@@ -7,8 +7,7 @@ const ErrorDateRangeMessage = () => {
 
   return (
     <div className={`${styles.errorMessageWindow} ${isErrorOpen ? styles.visible : ''}`}>
-      <h2 className={styles.errorTitle}>Некоретний діапазон дат!</h2>
-      <p className={styles.errorDescription}>Будь ласка, оберіть інший.</p>
+      <p className={styles.errorDescription}>Дата "ДО" не може бути меньшою за дату "ВІД"</p>
     </div>
   );
 };

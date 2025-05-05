@@ -14,14 +14,20 @@ const TotalAnalyticTable = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
+  let timeoutId;
+
   const handleStartDateChange = e => {
     const newStartDate = e.target.value;
 
     if (endDate && new Date(newStartDate) > new Date(endDate)) {
       dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
-      setTimeout(() => {
+
+      if (timeoutId) clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
         dispatch(closeModal('isErrorMessageModalOpen'));
       }, 2500);
+
       return;
     }
 
@@ -40,9 +46,13 @@ const TotalAnalyticTable = () => {
 
     if (startDate && new Date(newEndDate) < new Date(startDate)) {
       dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
-      setTimeout(() => {
+
+      if (timeoutId) clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
         dispatch(closeModal('isErrorMessageModalOpen'));
       }, 2500);
+
       return;
     }
 

@@ -13,12 +13,17 @@ const MobileDataFilter = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
+  let timeoutId;
+
   const handleStartDateChange = e => {
     const newStart = e.target.value;
 
-    if (endDate && new Date(newStartDate) > new Date(endDate)) {
+    if (endDate && new Date(newStart) > new Date(endDate)) {
       dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
-      setTimeout(() => {
+
+      if (timeoutId) clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
         dispatch(closeModal('isErrorMessageModalOpen'));
       }, 2500);
       return;
@@ -39,7 +44,10 @@ const MobileDataFilter = () => {
 
     if (startDate && new Date(newEnd) < new Date(startDate)) {
       dispatch(openModal({ modalKey: 'isErrorMessageModalOpen' }));
-      setTimeout(() => {
+
+      if (timeoutId) clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
         dispatch(closeModal('isErrorMessageModalOpen'));
       }, 2500);
       return;
