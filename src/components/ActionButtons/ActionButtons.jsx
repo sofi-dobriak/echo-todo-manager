@@ -11,7 +11,6 @@ import { countApproachesNumber, updateTaskStatus } from '../../redux/tasksSlice/
 import { hideItemAnalytic, showItemAnalytic } from '../../redux/itemAnalyticSlice/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/modalSlice/slice';
-import { selectCurrentTask } from '../../redux/itemAnalyticSlice/selectors';
 import styles from './ActionButtons.module.css';
 
 const ActionButtons = ({ id, status }) => {
@@ -151,15 +150,23 @@ const ActionButtons = ({ id, status }) => {
 
     case 'Завершено':
       return (
-        <Button
-          onClick={() => handleAnalytic(id)}
-          disabled={hasTaskInProgess}
-          className={styles.disabledButton}
-        >
-          <FaRegChartBar />
-        </Button>
+        <>
+          <Button
+            onClick={() => handleAnalytic(id)}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
+            <FaRegChartBar />
+          </Button>
+          <Button
+            onClick={() => handeEdit({ id, title })}
+            disabled={hasTaskInProgess}
+            className={styles.disabledButton}
+          >
+            <MdEdit />
+          </Button>
+        </>
       );
-
     case 'Видалено':
       return null;
 
