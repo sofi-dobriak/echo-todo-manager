@@ -1,4 +1,4 @@
 export interface FormValues {
-  id: string;
+  id?: string;
   title: string;
 }

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './MobileStatusFilter.module.css';
-import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
 import { resetStatusFilter, updateStatusFilter } from '../../redux/filterSlice/slice';
 import Button from '../Button/Button';
 import { selectFilters } from '../../redux/filterSlice/selectors';

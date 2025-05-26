@@ -6,7 +6,7 @@ export const selectAddModalOpen = (state: RootState) => selectModals(state).isAd
 export const selectConfirmModalOpen = (state: RootState) =>
   selectModals(state).isConfirmDeleteModalOpen;
 export const selectEditModalOpen = (state: RootState) => selectModals(state).isEditModalOpen;
-export const selectEditTaskData = (state: RootState) => selectModals(state).editTaskData;
+export const selectEditTaskData = (state: RootState) => selectModals(state).taskData;
 export const selectMobileWindow = (state: RootState) => selectModals(state).isMobileWindowOpen;
 export const selectFilterMobileWindow = (state: RootState) =>
   selectModals(state).isFilterMobileOpen;
