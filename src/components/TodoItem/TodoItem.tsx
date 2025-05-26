@@ -10,7 +10,7 @@ interface TodoItemProps {
   createdDate: string | undefined;
   stopDate: string | undefined;
   completeDate: string | undefined;
-  clickedId: string;
+  clickedId: string | null;
   setClickedId: (id: string | null) => void;
 }
 

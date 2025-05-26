@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 interface TextProps {
   children: ReactNode;
-  className: string;
+  className?: string;
 }
 
 const Text = ({ children, className = '' }: TextProps) => {

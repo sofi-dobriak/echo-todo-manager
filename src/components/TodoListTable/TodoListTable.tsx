@@ -4,7 +4,7 @@ import { selectFilteredTasks } from '../../redux/tasksSlice/selectors';
 import TodoItem from '../TodoItem/TodoItem';
 
 interface TodoListTable {
-  clickedId: string;
+  clickedId: string | null;
   setClickedId: (id: string | null) => void;
 }
 

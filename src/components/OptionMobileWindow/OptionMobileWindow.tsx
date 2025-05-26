@@ -8,7 +8,7 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { useEffect } from 'react';
 
 interface OptionMobileWindowProps {
-  clickedId: string;
+  clickedId: string | null;
 }
 
 const OptionMobileWindow = ({ clickedId }: OptionMobileWindowProps) => {

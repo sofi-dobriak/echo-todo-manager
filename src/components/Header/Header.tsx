@@ -10,7 +10,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import MobileFilterBar from '../MobileFilterBar/MobileFilterBar';
 
 interface HeaderProps {
-  clickedId: string;
+  clickedId: string | null;
 }
 
 const Header = ({ clickedId }: HeaderProps) => {
