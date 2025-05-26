@@ -20,7 +20,7 @@ import FilterMobileWindow from './components/FilterMobileWindow/FilterMobileWind
 import ErrorDateRangeMessage from './components/ErrorDateRangeMessage/ErrorDateRangeMessage';
 
 function App() {
-  const [clickedId, setClickedId] = useState<number | null>(null);
+  const [clickedId, setClickedId] = useState<string | null>(null);
   const tasks = useSelector(selectTasks);
   const filterTasks = useSelector(selectFilteredTasks);
   const isAnalyticVisible = useSelector(selectIsVisibleItemAnalytic);
