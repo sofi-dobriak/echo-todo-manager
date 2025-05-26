@@ -1,4 +1,4 @@
-# 🌀 "Luna" — Todo manager & Time Tracker
+# "Luna" — Todo manager & Time Tracker
 
 "Luna" is a clean, intuitive application for organizing tasks, tracking the time spent on each, and analyzing your productivity.
 
