@@ -31,7 +31,9 @@ function App() {
 
     setTimeout(() => {
       const footerTag = document.querySelector('footer');
-      if (footerTag) {
+      const isScroll = document.documentElement.scrollHeight > window.innerHeight;
+
+      if (footerTag && isScroll) {
         footerTag.scrollIntoView({ behavior: 'smooth' });
       }
     }, 100);
