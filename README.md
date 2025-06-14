@@ -109,3 +109,10 @@ All tasks and filters are saved to localStorage
 ---
 
 📌 Luna is more than a simple todo list — it's a focused workspace for meaningful, time-aware productivity.
+
+## 💻 My other projects
+
+### 📃 To Do Manager
+
+[Demo](https://sofi-dobriak.github.io/ToDo-Manager/) |
+[Github](https://github.com/sofi-dobriak/ToDo-Manager)
